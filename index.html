@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome2Utah | Park City Luxury Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #111110;
+      --dark: #1c1c1b;
+      --mid: #4a4a48;
+      --muted: #8a8a87;
+      --border: #e2e0db;
+      --dark-cream: #e8e0cb;
+      --cream: #f5f3ee;
+      --white: #fdfcfa;
+      --accent: #efede9;
+      --accent-light: #d4b07a;
+      --accent-ligher: #dabf97;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      padding-top: 72px; /* FIX: push content below fixed nav */
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3.5rem;
+      height: 72px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(253,252,250,0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      text-decoration: none;
+    }
+    .nav-logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo-main { color: var(--black); }
+    .nav-logo-sub {
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      font-weight: 500;
+    }
+    nav.scrolled .nav-logo-sub { color: var(--mid); }
+
+    .nav-center {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-center a {
+      font-size: 0.90rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      color: rgba(253,252,250,0.8);
+      transition: color 0.2s;
+    }
+    nav.scrolled .nav-center a { color: var(--mid); }
+    .nav-center a:hover { color: var(--accent) !important; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .nav-phone {
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(253,252,250,0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.02em;
+    }
+    nav.scrolled .nav-phone { color: var(--mid); }
+    .nav-phone:hover { color: var(--accent) !important; }
+
+    .nav-btn {
+      background: var(--accent-light);
+      color: var(--white);
+      padding: 0.55rem 1.4rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: var(--accent-ligher); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+      /* FIX: offset the body padding so hero still fills full viewport */
+      margin-top: -72px;
+    }
+
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 8s ease;
+    }
+    .hero-slide.active img { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,10,0.15) 0%,
+        rgba(10,10,10,0.35) 50%,
+        rgba(10,10,10,0.65) 100%
+      );
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3.5rem 5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.8rem;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(253,252,250,0.75);
+      max-width: 440px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--black);
+      padding: 0.9rem 2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-white:hover { background: var(--cream); transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1px solid rgba(253,252,250,0.45);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: rgba(253,252,250,0.8); background: rgba(253,252,250,0.08); }
+
+    /* slide dots */
+    .hero-dots {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 24px; height: 2px;
+      background: rgba(253,252,250,0.3);
+      transition: background 0.3s, width 0.3s;
+      cursor: pointer !important;
+    }
+    .dot.active { background: var(--accent); width: 40px; }
+
+    /* ── SEARCH STRIP ── */
+    .search-strip {
+      background: var(--black);
+      padding: 0;
+    }
+
+    .search-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .search-tab {
+      padding: 1rem 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      border-bottom: 2px solid transparent;
+      cursor: pointer !important;
+      transition: color 0.2s, border-color 0.2s;
+      margin-bottom: -1px;
+    }
+    .search-tab.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .search-tab:hover { color: rgba(255,255,255,0.8); }
+
+    .search-inputs {
+      display: flex;
+      align-items: stretch;
+      padding: 0 3.5rem;
+    }
+
+    .search-field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.2rem 1.5rem 1.2rem 0;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .search-field:first-child { padding-left: 0; }
+
+    .search-field label {
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+      font-weight: 500;
+    }
+
+    .search-field select,
+    .search-field input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      font-weight: 300;
+    }
+    .search-field select option { background: var(--off-black); }
+    .search-field input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .search-go {
+      background: var(--accent);
+      border: none;
+      padding: 0 2.5rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer !important;
+      transition: background 0.2s;
+      white-space: nowrap;
+      margin-left: 1.5rem;
+    }
+    .search-go:hover { background: var(--accent-light); }
+
+    .quick-searches {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 0 3.5rem;
+      overflow-x: auto;
+    }
+    .quick-searches a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      padding: 0.85rem 1.4rem 0.85rem 0;
+      margin-right: 1.4rem;
+      border-bottom: 1px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .quick-searches a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      padding: 3rem 3.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--black);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── FEATURED LISTINGS ── */
+    .listings-section {
+      padding: 6rem 3.5rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .link-arrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--black);
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .link-arrow:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .listing-card {
+      background: var(--white);
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .listing-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+    .listing-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .listing-card:hover .listing-img img { transform: scale(1.04); }
+
+    .listing-tag {
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0.35rem 0.7rem;
+    }
+
+    .listing-body {
+      padding: 1.5rem 1.8rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .listing-location {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .listing-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .listing-details {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .listing-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .listings-tab.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ── AREAS ── */
+    .areas-section {
+      background: var(--cream);
+      padding: 6rem 3.5rem;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 3rem;
+    }
+
+    .area-card {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      text-decoration: none;
+      display: block;
+    }
+
+    .area-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .area-card:hover img { transform: scale(1.06); }
+
+    .area-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 55%);
+    }
+
+    .area-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.8rem;
+    }
+
+    .area-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .area-desc {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-weight: 500;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      display: grid;
+      grid-template-columns: 55% 45%;
+    }
+
+    .about-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .about-visual-label {
+      position: absolute;
+      bottom: 2.5rem; right: 2.5rem;
+      background: var(--white);
+      padding: 1.5rem 2rem;
+      text-align: right;
+    }
+    .about-visual-label-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--black);
+      line-height: 1;
+      display: block;
+    }
+    .about-visual-label-text {
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .about-content {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--border);
+    }
+
+    .about-content .section-title { margin: 0.6rem 0 2rem; }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.85;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-credentials {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .cred {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--dark);
+    }
+    .cred-dot {
+      width: 4px; height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .btn-dark:hover { background: var(--dark); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: var(--black);
+      padding: 7rem 3.5rem;
+      text-align: center;
+    }
+
+    .testimonials-section .eyebrow { justify-content: center; display: flex; margin-bottom: 0.5rem; }
+    .testimonials-section .section-title { color: var(--white); text-align: center; margin-bottom: 4rem; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .testimonial {
+      background: var(--off-black);
+      padding: 3rem;
+    }
+
+    .t-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 0.5;
+      margin-bottom: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .t-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(253,252,250,0.8);
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      font-weight: 300;
+    }
+
+    .t-attr {
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ── MARQUEE REVIEWS ── */
+    .reviews-marquee {
+      overflow: hidden;
+      padding: 2rem 0;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .reviews-track {
+      display: flex;
+      width: max-content;
+      gap: 2rem;
+      animation: scrollMarquee 45s linear infinite;
+    }
+
+    .reviews-track:hover {
+      animation-play-state: paused;
+    }
+
+    .testimonial-card {
+      background: var(--off-black);
+      padding: 3rem;
+      width: 400px;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: left;
+    }
+
+    @keyframes scrollMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      padding: 7rem 3.5rem;
+      background: var(--white);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+      border: 1px solid var(--border);
+    }
+
+    .process-step {
+      padding: 3rem 2.5rem;
+      background: var(--cream);
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: background 0.2s;
+    }
+    .process-step:last-child { border-right: none; }
+    .process-step:hover { background: var(--dark-cream); }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--accent-light);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 0.8rem;
+    }
+
+    .step-text {
+      font-size: 1.0rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+
+    .contact-left {
+      background: var(--cream);
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .contact-left .section-title { margin: 0.6rem 0 1.5rem; }
+
+    .contact-sub {
+      font-size: 0.92rem;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail-line {
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+      margin-top: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .contact-detail-value {
+      font-size: 1rem;
+      color: var(--black);
+      font-weight: 400;
+      text-decoration: none;
+    }
+    a.contact-detail-value:hover { color: var(--accent); }
+
+    .contact-right {
+      background: var(--white);
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-right .eyebrow { margin-bottom: 2rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-field:last-of-type { margin-bottom: 2rem; }
+
+    .form-field label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.6rem 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      color: var(--dark);
+      background: transparent;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--accent); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(74,74,72,0.35); }
+    .form-field textarea { resize: none; height: 80px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 5rem 3.5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .footer-brand-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .footer-brand-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-legal a {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 2rem; }
+      .hero-content { padding: 0 2rem 4rem; }
+      .search-inputs, .quick-searches { padding: 0 2rem; }
+      .listings-section, .areas-section, .process-section, .testimonials-section { padding: 4rem 2rem; }
+      .listings-grid { grid-template-columns: repeat(2, 1fr); }
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-step:nth-child(2) { border-right: none; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-content { padding: 4rem 2rem; }
+      .contact-section { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 4rem 2rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      footer { padding: 4rem 2rem 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      /* FIX: hide nav items that don't fit on mobile */
+      .nav-center { display: none; }
+      .nav-phone { display: none; }
+      .nav-btn { display: none; }
+
+      /* FIX: shrink logo text so it fits on mobile */
+      .nav-logo-main {
+        font-size: 1.6rem;
+      }
+      .nav-logo-sub {
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+      }
+
+      nav { padding: 0 1.5rem; }
+      .hero-title { font-size: 3rem; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .search-inputs { flex-direction: column; padding: 0; }
+      .search-field { padding: 1rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .search-go { padding: 1.2rem; margin: 0; }
+      .quick-searches { padding: 0 1.5rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .listings-grid { grid-template-columns: 1fr; }
+      .areas-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: 1fr; border: none; }
+      .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .testimonial-card { width: 300px; padding: 2rem; }
+      * { cursor: auto !important; }
+      .cursor, .cursor-ring { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-main">Smith Real Estate Group</span>
+    <span class="nav-logo-sub">Welcome 2 Utah</span>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#listings">Listings</a></li>
+    <li><a href="#areas">Communities</a></li>
+    <li><a href="#about">About Hugh</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:8016999600" class="nav-phone">(801) 699-9600</a>
+    <a href="#contact" class="nav-btn">Start Your Search</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" id="slide-0">
+      <img src="https://www.visitutah.com/azure/cmsroot/visitutah/media/site-assets/three-season-photography/northern-utah/northern-utah-3/nutrains_heber-valley-tourism_railroad_train_summer_view_dji_0541.jpeg" alt="Heber Valley" />
+    </div>
+    <div class="hero-slide" id="slide-1">
+      <img src="https://us.vocuspr.com/Publish/3693076/vcsPRAsset_3693076_174050_d38d5392-fecb-45df-86f8-fcdc624744eb_0.jpg" alt="SLC Golf" />
+    </div>
+    <div class="hero-slide" id="slide-2">
+      <img src="https://www.redledges.com/wp-content/uploads/2022/03/luxury-home-builders-red-ledges-utah.jpg" alt="Red Ledges" />
+    </div>
+    <div class="hero-slide" id="slide-3">
+      <img src="https://toptenrealestatedeals.com/wp-content/uploads/2025/09/Outstanding-property-in-Park-City-Utah-c-Engel-Volkers-Park-City-10.jpg" alt="Park City" />
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Wasatch Back · Salt Lake Valley · Utah County · Davis County</p>
+    <h1 class="hero-title">Where the Mountains<br/><em>Welcome You Home</em></h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Hugh Smith has guided buyers and sellers through Utah's communities for over 30 years. Exceptional service. Unmatched local expertise.</p>
+      <div class="hero-actions">
+        <a href="#listings" class="btn-white">Browse All Listings</a>
+        <a href="#contact" class="btn-ghost">Connect With Hugh</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num">30+</span>
+    <span class="stat-label">Years of Experience</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">2</span>
+    <span class="stat-label">Counties Served</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">$1B+</span>
+    <span class="stat-label">In Transactions</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Referral Driven</span>
+  </div>
+</div>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings-section" id="listings">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Properties</span>
+      <h2 class="section-title">Featured Listings</h2>
+    </div>
+    <a href="http://www.greaterparkcityrealestate.com" class="link-arrow">View All Listings →</a>
+  </div>
+
+  <div style="margin-bottom: 2.5rem;">
+    <div style="display:inline-flex; border:1px solid var(--border); background:var(--cream);">
+      <button
+        id="tab-listed"
+        onclick="switchListings('listed')"
+        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:var(--black); color:var(--white); cursor:pointer;"
+      >Currently Listed</button>
+      <button
+        id="tab-sold"
+        onclick="switchListings('sold')"
+        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:transparent; color:var(--muted); cursor:pointer; transition:background 0.2s, color 0.2s;"
+      >Recently Sold</button>
+    </div>
+  </div>
+
+  <div id="listings-loading" style="padding: 3rem 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">
+    Loading listings...
+  </div>
+
+  <div id="listings-grid" class="listings-grid" style="display:none;"></div>
+</section>
+
+<!-- AREAS -->
+<section class="areas-section" id="areas">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Communities</span>
+      <h2 class="section-title">Explore the Region</h2>
+    </div>
+    <a href="http://realestate.greaterparkcityrealestate.com/idx/11417/mapSearch.php" class="link-arrow">Region Map →</a>
+  </div>
+  <div class="areas-grid">
+    <a href="http://realestate.greaterparkcityrealestate.com/idx/11417/results.php?stp=advanced&idxID=360&pt=sfr&showField=cityField&lp=0&hp=300000000&ba=0&srt=ASC&start=0&per=25&aw_area=Lower+Deer+Valley+Resort&aw_area=Upper+Deer+Valley+Resort" class="area-card">
+      <img src="https://cdn.skimag.com/wp-content/uploads/2020/10/ski1120-rgw2-deervalley-courtesy-baldmtn-v2.jpg" alt="Deer Valley" />
+      <div class="area-gradient"></div>
+      <div class="area-body">
+        <span class="area-name">Deer Valley</span>
+        <span class="area-desc">Ski-in / Ski-out Luxury</span>
+      </div>
+    </a>
+    <a href="http://realestate.greaterparkcityrealestate.com/idx/11417/results.php?stp=advanced&idxID=360&pt=sfr&showField=cityField&city=35496&lp=100000&hp=400000&ba=0&srt=ASC&start=0&per=25" class="area-card">
+      <img src="https://www.hyattvacationclub.com/files/live/sites/hvc-marketing/files/marketing/travel-inspiration/outdoor-adventures/24-503-3181201_WOH_HyattPlaceParkCity_Park_City_Utah_Fall_downtownHVCGettyImages-1277639781_16_9.webp" alt="Park City" />
+      <div class="area-gradient"></div>
+      <div class="area-body">
+        <span class="area-name">Park City</span>
+        <span class="area-desc">Mountain Town Living</span>
+      </div>
+    </a>
+    <a href="http://realestate.greaterparkcityrealestate.com/idx/11417/results.php?stp=advanced&idxID=360&pt=sfr&showField=cityField&lp=0&hp=30000000&ba=0&srt=ASC&start=0&per=25&aw_area=Promontory+Area" class="area-card">
+      <img src="https://www.parkcity4u.com/uploads/nicklaus-promonory.webp" alt="Promontory" />
+      <div class="area-gradient"></div>
+      <div class="area-body">
+        <span class="area-name">Promontory</span>
+        <span class="area-desc">Gated Golf & Ranch</span>
+      </div>
+    </a>
+    <a href="http://realestate.greaterparkcityrealestate.com/idx/11417/results.php?stp=advanced&idxID=360&pt=sfr&showField=cityField&city=20680&city=30117&lp=100000&hp=10000000&ba=0&srt=ASC&start=0&per=25" class="area-card">
+      <img src="https://res.cloudinary.com/sagacity/image/upload/c_crop,h_1344,w_2016,x_0,y_0/c_limit,f_auto,fl_lossy,q_80,w_1080/heber_thywsf.jpg" alt="Heber & Midway" />
+      <div class="area-gradient"></div>
+      <div class="area-body">
+        <span class="area-name">Heber & Midway</span>
+        <span class="area-desc">Valley & Farm Estates</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-visual">
+    <img src="https://www.greaterparkcityrealestate.com/images/11.jpg" alt="Park City view" />
+    <div class="about-visual-label">
+      <span class="about-visual-label-num">30+</span>
+      <span class="about-visual-label-text">Years in Park City</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <span class="eyebrow">Your Agent</span>
+    <h2 class="section-title">Hugh Smith,<br/><em>REALTOR®</em></h2>
+    <p class="about-text">I'm a full-time, full-service REALTOR® who has spent over three decades mastering the greater Park City market. I know every neighborhood, every nuance, and every opportunity — and I put that knowledge to work for you.</p>
+    <p class="about-text">My clients return to me and send their friends and family because they know me to be trustworthy, efficient, and genuinely invested in their outcome.</p>
+    <div class="about-credentials">
+      <div class="cred"><span class="cred-dot"></span>Summit & Wasatch County Specialist</div>
+      <div class="cred"><span class="cred-dot"></span>Luxury Homes, Condos, Lots & Investment Properties</div>
+      <div class="cred"><span class="cred-dot"></span>Multiple Professional Designations & Recognition Awards</div>
+      <div class="cred"><span class="cred-dot"></span>Ski, Golf & Ranch Community Expert</div>
+    </div>
+    <a href="#contact" class="btn-dark">Schedule a Consultation</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <span class="eyebrow" style="color: var(--accent);">Testimonials</span>
+  <h2 class="section-title">Client Experiences</h2>
+
+  <div class="reviews-marquee">
+    <div class="reviews-track">
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Hugh's knowledge of the Park City market is unparalleled. He found us our dream home before it even hit the market.</p>
+        <span class="t-attr">The Andersons</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="t-quote">"</div>
+        <p class="t-text">Professional, patient, and incredibly well-connected. The only choice for luxury real estate in Utah.</p>
+        <span class="t-attr">Mark & Sarah J.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-head" style="flex-direction:column; align-items:flex-start; gap:0.5rem;">
+    <span class="eyebrow">How It Works</span>
+    <h2 class="section-title">The Hugh Smith Experience</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <span class="step-num">01</span>
+      <h3 class="step-title">Consultation</h3>
+      <p class="step-text">We start by understanding your goals, timeline, and what success looks like for you — whether buying or selling.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">02</span>
+      <h3 class="step-title">Market Analysis</h3>
+      <p class="step-text">With 30+ years of data and relationships, Hugh delivers a precise picture of the market and positions you to win.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">03</span>
+      <h3 class="step-title">Strategy & Action</h3>
+      <p class="step-text">From targeted property searches to premium property marketing, every step is executed with intention and precision.</p>
+    </div>
+    <div class="process-step">
+      <span class="step-num">04</span>
+      <h3 class="step-title">Seamless Close</h3>
+      <p class="step-text">Hugh manages negotiations, inspections, and every detail so your closing is smooth, efficient, and on your terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-left">
+    <span class="eyebrow">Get In Touch</span>
+    <h2 class="section-title">Let's Find Your<br/><em>Perfect Property</em></h2>
+    <p class="contact-sub">Whether you're ready to buy, thinking about selling, or just exploring the market — reach out. Hugh will respond personally.</p>
+    <div class="contact-detail">
+      <div class="contact-detail-line"></div>
+      <div>
+        <p class="contact-detail-label">Direct Line</p>
+        <a href="tel:8016999600" class="contact-detail-value">(801) 699-9600</a>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-line"></div>
+      <div>
+        <p class="contact-detail-label">Service Area</p>
+        <p class="contact-detail-value" style="font-size:0.9rem; color:var(--mid);">Wasatch Back · Salt Lake Valley · Utah County<br/>Davis County</p>
+      </div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-line"></div>
+      <div>
+        <p class="contact-detail-label">Listing Alerts</p>
+        <a href="http://www.greaterparkcityrealestate.idxbroker.com/idx/search/emailupdatesignup" class="contact-detail-value" style="font-size:0.9rem;">Sign up for new listing notifications →</a>
+      </div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <span class="eyebrow">Send a Message</span>
+    <div class="form-row">
+      <div class="form-field">
+        <label>First Name</label>
+        <input type="text" placeholder="Jane" />
+      </div>
+      <div class="form-field">
+        <label>Last Name</label>
+        <input type="text" placeholder="Smith" />
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Email Address</label>
+      <input type="email" placeholder="jane@example.com" />
+    </div>
+    <div class="form-field">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="(801) 555-0000" />
+    </div>
+    <div class="form-field">
+      <label>I'm Looking To</label>
+      <select>
+        <option>Buy a Property</option>
+        <option>Sell a Property</option>
+        <option>Buy & Sell</option>
+        <option>Just Exploring</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Message</label>
+      <textarea placeholder="Tell Hugh what you're looking for…"></textarea>
+    </div>
+    <button type="button" class="btn-dark" style="border:none; width:100%; text-align:center; font-size:0.72rem; letter-spacing:0.14em; font-family:'Outfit',sans-serif;">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-brand-name">Welcome2Utah</p>
+      <span class="footer-brand-tag">Hugh Smith Real Estate · REALTOR®</span>
+      <p class="footer-brand-desc">Serving buyers and sellers across Park City, Deer Valley, Promontory, and the greater Wasatch Back for over 30 years.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Explore</p>
+      <ul class="footer-links">
+        <li><a href="http://realestate.greaterparkcityrealestate.com/idx/11417/mapSearch.php">Map Search</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.idxbroker.com/idx/featured">Featured Listings</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.idxbroker.com/idx/search/emailupdatesignup">Email Alerts</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.com/park_city_golf.html">Golf Communities</a></li>
+        <li><a href="https://www.greaterparkcityrealestate.com/deer_valley_ski.html">Ski Properties</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Areas</p>
+      <ul class="footer-links">
+        <li><a href="#">Park City</a></li>
+        <li><a href="#">Deer Valley</a></li>
+        <li><a href="#">Promontory</a></li>
+        <li><a href="#">Heber & Midway</a></li>
+        <li><a href="#">The Canyons</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <ul class="footer-links">
+        <li><a href="tel:8016999600">(801) 699-9600</a></li>
+        <li><a href="#contact">Send a Message</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.com/deer_valley_buyers.html">Buyer Resources</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.com/heber_sellers.html">Seller Resources</a></li>
+        <li><a href="http://www.greaterparkcityrealestate.com/heber_sellers.html">Lender Resources</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Welcome2Utah · Hugh Smith Real Estate · All Rights Reserved</p>
+    <div class="footer-legal">
+      <a href="http://www.greaterparkcityrealestate.com/privacy-policy.html">Privacy Policy</a>
+      <a href="http://www.greaterparkcityrealestate.com/terms-of-use.html">Terms of Use</a>
+      <a href="http://www.greaterparkcityrealestate.com/license-disclosure.html">License Disclosure</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Hero slideshow
+const slides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('heroDots');
+let current = 0;
+
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.style.cursor = 'pointer';
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsContainer.children[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  dotsContainer.children[current].classList.add('active');
+}
+
+setInterval(() => goTo((current + 1) % slides.length), 5000);
+
+// Search tabs
+document.querySelectorAll('.search-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    if (tab.textContent === 'Email Alerts') {
+      window.open('http://www.greaterparkcityrealestate.idxbroker.com/idx/search/emailupdatesignup');
+    }
+  });
+});
+
+// Listings toggle + Google Sheets fetch
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbya2-OYQ8Wc4e7xaYVjQFwWiKPOmMTMRGhL7kXvV6jxOEUkErEbKH0eFxBgzm281gvr1g/exec';
+let allListings = [];
+let currentTab = 'listed';
+
+async function loadListings() {
+  try {
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
+    allListings = data;
+    renderListings('listed');
+  } catch (e) {
+    document.getElementById('listings-loading').textContent = 'Unable to load listings.';
+  }
+}
+
+function renderListings(status) {
+  const grid = document.getElementById('listings-grid');
+  const loading = document.getElementById('listings-loading');
+  const filtered = allListings.filter(l => l.status === status);
+
+  if (filtered.length === 0) {
+    grid.style.display = 'none';
+    loading.style.display = 'block';
+    loading.textContent = status === 'listed' ? 'No active listings at this time.' : 'No recent sales to display.';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(l => `
+    <a href="${l.link || '#'}" class="listing-card">
+      <div class="listing-img">
+        <img src="${l.image}" alt="${l.name}" />
+        <span class="listing-tag" ${status === 'sold' ? 'style="background:var(--mid);"' : ''}>${l.tag}</span>
+      </div>
+      <div class="listing-body">
+        <p class="listing-location">${l.location}</p>
+        <h3 class="listing-name">${l.name}</h3>
+        <p class="listing-details">${l.details}</p>
+        <p class="listing-price" ${status === 'sold' ? 'style="color:var(--muted);"' : ''}>${l.price}</p>
+      </div>
+    </a>
+  `).join('');
+
+  loading.style.display = 'none';
+  grid.style.display = 'grid';
+}
+
+function switchListings(tab) {
+  currentTab = tab;
+  document.getElementById('tab-listed').style.background = tab === 'listed' ? 'var(--black)' : 'transparent';
+  document.getElementById('tab-listed').style.color = tab === 'listed' ? 'var(--white)' : 'var(--muted)';
+  document.getElementById('tab-sold').style.background = tab === 'sold' ? 'var(--black)' : 'transparent';
+  document.getElementById('tab-sold').style.color = tab === 'sold' ? 'var(--white)' : 'var(--muted)';
+  renderListings(tab);
+}
+
+loadListings();
+</script>
+</body>
+</html>
