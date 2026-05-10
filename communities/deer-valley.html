@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- ── SEO ── -->
+  <title> Deer Valley Real Estate | Hugh Smith | Welcome2Utah</title>
+  <meta name="description" content="Explore Deer Valley, Utah real estate with Hugh Smith — a 30-year local expert specializing in ski-in ski-out luxury homes and slope-side estates.
+  <meta name="keywords" content="Deer Valley real estate, Deer Valley homes for sale, Deer Valley Utah luxury ski homes, Hugh Smith realtor Deer Valley" />
+  <link rel="canonical" href="https://www.welcome2utah.com/communities/deer-valley.html" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:title" content=" Deer Valley Real Estate | Hugh Smith" />
+  <meta property="og:description" content="30+ years of Park City real estate expertise. Browse homes and neighborhoods with Hugh Smith." />
+  <meta property="og:url" content="https://www.welcome2utah.com/communities/deer-valley.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- ── Fonts ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+
+    .page-hero {
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+      overflow: hidden;
+      margin-top: calc(-72px - env(safe-area-inset-top, 0px));
+    }
+
+    .page-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .page-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.6) 100%);
+      z-index: 2;
+    }
+
+    .page-hero-content {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 3.5rem 4rem;
+    }
+
+    .page-hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent-light); font-weight: 500; margin-bottom: 0.8rem;
+    }
+
+    .page-hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300; color: var(--white);
+      line-height: 1; letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-sub {
+      font-size: 1rem; color: rgba(253,252,250,0.7);
+      max-width: 500px; line-height: 1.6; font-weight: 300;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 1rem 3.5rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--black); }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    /* ── QUICK STATS ── */
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quick-stat {
+      padding: 2.5rem 3.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .quick-stat:last-child { border-right: none; }
+
+    .quick-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--black); line-height: 1;
+      display: block; margin-bottom: 0.3rem;
+    }
+
+    .quick-stat-label {
+      font-size: 0.65rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); font-weight: 500;
+    }
+
+    /* ── OVERVIEW ── */
+    .overview-section {
+      display: grid;
+      grid-template-columns: 58% 42%;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .overview-content {
+      padding: 5rem 3.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .eyebrow {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--black); font-weight: 500; display: block; margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: var(--black); line-height: 1.1;
+      margin-bottom: 1.8rem;
+    }
+
+    .overview-text {
+      font-size: 0.95rem; color: var(--mid);
+      line-height: 1.85; font-weight: 300; margin-bottom: 1.2rem;
+    }
+
+    .highlight-list {
+      margin-top: 2rem;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+
+    .highlight-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.88rem; color: var(--dark); line-height: 1.5;
+    }
+
+    .highlight-dot {
+      width: 4px; height: 4px; background: var(--accent-light);
+      border-radius: 50%; flex-shrink: 0; margin-top: 0.45rem;
+    }
+
+    .overview-sidebar {
+      padding: 5rem 3rem;
+      background: var(--cream);
+    }
+
+    .sidebar-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .sidebar-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); font-weight: 500; margin-bottom: 0.5rem; display: block;
+    }
+
+    .sidebar-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400; color: var(--black); line-height: 1.2;
+    }
+
+    .sidebar-sub {
+      font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.5;
+    }
+
+    /* ── NEIGHBORHOODS ── */
+    .neighborhoods-section {
+      padding: 5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .neighborhoods-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 3rem;
+    }
+
+    .neighborhood-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .neighborhood-card:hover { background: var(--cream); }
+
+    .neighborhood-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .neighborhood-tag {
+      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent-light); font-weight: 500; margin-bottom: 1rem; display: block;
+    }
+
+    .neighborhood-desc {
+      font-size: 0.85rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.2rem;
+    }
+
+    .neighborhood-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600; color: var(--black);
+    }
+
+    /* ── LIFESTYLE ── */
+    .lifestyle-section {
+      background: var(--black);
+      padding: 5rem 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .lifestyle-section .eyebrow { color: var(--accent); }
+    .lifestyle-section .section-title { color: var(--white); margin-bottom: 3rem; }
+
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .lifestyle-item {
+      background: var(--off-black);
+      padding: 2.5rem 2rem;
+    }
+
+    .lifestyle-icon {
+      font-size: 1.5rem; margin-bottom: 1rem; display: block;
+    }
+
+    .lifestyle-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .lifestyle-text {
+      font-size: 0.82rem; color: rgba(253,252,250,0.5); line-height: 1.7;
+    }
+
+    /* ── LISTINGS ── */
+    .listings-section {
+      padding: 5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 3rem;
+    }
+
+    .link-arrow {
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--black); text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 0.5rem;
+      padding-bottom: 2px; border-bottom: 1px solid var(--black);
+      transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+    }
+    .link-arrow:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+    .listings-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--border);
+    }
+
+    .listing-card { background: var(--white); text-decoration: none; display: block; overflow: hidden; }
+    .listing-img { aspect-ratio: 4/3; overflow: hidden; position: relative; }
+    .listing-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .listing-card:hover .listing-img img { transform: scale(1.04); }
+    .listing-tag { position: absolute; top: 1.2rem; left: 1.2rem; background: var(--black); color: var(--white); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; padding: 0.35rem 0.7rem; }
+    .listing-body { padding: 1.5rem 1.8rem 2rem; border-top: 1px solid var(--border); }
+    .listing-location { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--black); font-weight: 500; margin-bottom: 0.5rem; }
+    .listing-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--black); margin-bottom: 0.4rem; line-height: 1.2; }
+    .listing-details { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.2rem; }
+    .listing-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--black); }
+
+    .no-listings {
+      padding: 3rem; text-align: center;
+      font-size: 0.85rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--cream); border: 1px solid var(--border);
+    }
+
+    /* ── HUGH CTA ── */
+    .hugh-cta {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hugh-cta-left {
+      background: var(--cream);
+      padding: 5rem 3.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .hugh-cta-left .section-title { margin: 0.6rem 0 1.5rem; }
+
+    .cta-text {
+      font-size: 0.92rem; color: var(--mid); line-height: 1.7;
+      margin-bottom: 2.5rem; font-weight: 300;
+    }
+
+    .btn-dark {
+      background: var(--black); color: var(--white);
+      padding: 0.9rem 2rem; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s; display: inline-block;
+    }
+    .btn-dark:hover { background: var(--dark); }
+
+    .hugh-cta-right {
+      padding: 5rem 3.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .form-field:last-of-type { margin-bottom: 2rem; }
+    .form-field label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .form-field input, .form-field select, .form-field textarea { border: none; border-bottom: 1px solid var(--border); padding: 0.6rem 0; font-family: 'Outfit', sans-serif; font-size: 0.92rem; color: var(--dark); background: transparent; outline: none; transition: border-color 0.2s; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--accent-light); }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(74,74,72,0.35); }
+    .form-field textarea { resize: none; height: 80px; }
+
+    /* ── COMMUNITY NAV ── */
+    .community-nav {
+      background: var(--black);
+      padding: 2rem 3.5rem;
+      display: flex; align-items: center; gap: 2rem;
+      overflow-x: auto;
+    }
+
+    .community-nav-label {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); white-space: nowrap; flex-shrink: 0;
+    }
+
+    .community-nav-links {
+      display: flex; gap: 0; flex-wrap: nowrap;
+    }
+
+    .community-nav-link {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); text-decoration: none; padding: 0.5rem 1.2rem;
+      border: 1px solid rgba(255,255,255,0.08); margin-right: -1px;
+      transition: color 0.2s, background 0.2s; white-space: nowrap;
+    }
+    .community-nav-link:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .community-nav-link.active { color: var(--white); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .overview-section { grid-template-columns: 1fr; }
+      .overview-content { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 2rem; }
+      .overview-sidebar { padding: 3rem 2rem; }
+      .neighborhoods-grid { grid-template-columns: repeat(2, 1fr); }
+      .lifestyle-grid { grid-template-columns: repeat(2, 1fr); }
+      .listings-grid { grid-template-columns: repeat(2, 1fr); }
+      .hugh-cta { grid-template-columns: 1fr; }
+      .hugh-cta-left { border-right: none; border-bottom: 1px solid var(--border); padding: 3rem 2rem; }
+      .hugh-cta-right { padding: 3rem 2rem; }
+      .page-hero-content, .neighborhoods-section, .lifestyle-section, .listings-section, .breadcrumb, .community-nav { padding-left: 2rem; padding-right: 2rem; }
+      .quick-stat { padding: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .neighborhoods-grid { grid-template-columns: 1fr; }
+      .lifestyle-grid { grid-template-columns: 1fr; }
+      .listings-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .page-hero-content { padding: 0 1.5rem 2.5rem; }
+      .breadcrumb { padding: 1rem 1.5rem; }
+      .community-nav { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV (injected) -->
+<div id="nav-placeholder"></div>
+<script src="../nav.js"></script>
+
+<!-- HERO -->
+<section class="page-hero">
+  <img
+    src="https://www.hyattvacationclub.com/files/live/sites/hvc-marketing/files/marketing/travel-inspiration/outdoor-adventures/24-503-3181201_WOH_HyattPlaceParkCity_Park_City_Utah_Fall_downtownHVCGettyImages-1277639781_16_9.webp"
+    alt="Deer Valley, Utah"
+  />
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <p class="page-hero-eyebrow">Communities · Deer Valley Resort</p>
+    <h1 class="page-hero-title">Deer Valley</h1>
+    <p class="page-hero-sub">Utah's most exclusive ski resort community — ski-in, ski-out estates with white-glove service and unmatched terrain.</p>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span>›</span>
+  <a href="../index.html#areas">Communities</a>
+  <span>›</span>
+  Park City
+</div>
+
+<!-- COMMUNITY NAV -->
+<div class="community-nav">
+  <span class="community-nav-label">Other Communities</span>
+  <div class="community-nav-links">
+    <a href="park-city.html" class="community-nav-link">Park City</a>
+    <a href="deer-valley.html" class="community-nav-link active">Deer Valley</a>
+    <a href="heber-midway.html" class="community-nav-link">Heber & Midway</a>
+    <a href="salt-lake-valley.html" class="community-nav-link">Salt Lake Valley</a>
+    <a href="utah-county.html" class="community-nav-link">Utah County</a>
+  </div>
+</div>
+
+<!-- QUICK STATS -->
+<div class="quick-stats">
+  <div class="quick-stat">
+    <span class="quick-stat-num">$1.8M+</span>
+    <span class="quick-stat-label">Median Home Price</span>
+  </div>
+  <div class="quick-stat">
+    <span class="quick-stat-num">7,000 ft</span>
+    <span class="quick-stat-label">Elevation</span>
+  </div>
+  <div class="quick-stat">
+    <span class="quick-stat-num">2</span>
+    <span class="quick-stat-label">World-Class Ski Resorts</span>
+  </div>
+  <div class="quick-stat">
+    <span class="quick-stat-num">30 min</span>
+    <span class="quick-stat-label">To Salt Lake City</span>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview-section">
+  <div class="overview-content">
+    <span class="eyebrow">About the Area</span>
+    <h2 class="section-title">Living in<br/>Deer Valley</h2>
+    <p class="overview-text">
+      [Replace with Hugh's personal take on Park City — what makes it special, who buys here, what buyers should know. 2–3 paragraphs in first person works best for SEO and authenticity.]
+    </p>
+    <p class="overview-text">
+      [Second paragraph — talk about the market, price trends, what different budgets get you, investment potential, etc.]
+    </p>
+    <div class="highlight-list">
+      <div class="highlight-item"><span class="highlight-dot"></span>Home to the Sundance Film Festival and two major ski resorts — Park City Mountain and Deer Valley</div>
+      <div class="highlight-item"><span class="highlight-dot"></span>Strong short-term rental market makes it attractive for investors and second-home buyers</div>
+      <div class="highlight-item"><span class="highlight-dot"></span>No state income tax on primary residences for qualifying buyers</div>
+      <div class="highlight-item"><span class="highlight-dot"></span>[Add more local insights here]</div>
+    </div>
+  </div>
+  <div class="overview-sidebar">
+    <div class="sidebar-block">
+      <span class="sidebar-label">Best For</span>
+      <p class="sidebar-value">Families, second-home buyers & investors</p>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">Price Range</span>
+      <p class="sidebar-value">$600K – $15M+</p>
+      <p class="sidebar-sub">Condos from the $600s · Single family from $1.2M · Estates $4M+</p>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">School District</span>
+      <p class="sidebar-value">Park City School District</p>
+      <p class="sidebar-sub">[Add ratings, school names, notes]</p>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">HOA Culture</span>
+      <p class="sidebar-value">[Placeholder]</p>
+      <p class="sidebar-sub">[Notes on HOAs, what to expect, fees, etc.]</p>
+    </div>
+    <div class="sidebar-block">
+      <span class="sidebar-label">Hugh's Take</span>
+      <p class="sidebar-value" style="font-size:1rem; font-family:'Outfit',sans-serif; font-weight:300; line-height:1.6; color:var(--mid);">"[A short, personal quote from Hugh about this market — 1–2 sentences. This is gold for both SEO and trust.]"</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEIGHBORHOODS -->
+<section class="neighborhoods-section">
+  <span class="eyebrow">Neighborhoods</span>
+  <h2 class="section-title">Inside Park City</h2>
+  <div class="neighborhoods-grid">
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">Old Town</h3>
+      <span class="neighborhood-tag">Historic · Walkable · Vibrant</span>
+      <p class="neighborhood-desc">[Describe Old Town — character, who lives here, what properties look like, walkability, proximity to Main Street, etc.]</p>
+      <p class="neighborhood-price">From $900K</p>
+    </div>
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">Jordanelle</h3>
+      <span class="neighborhood-tag">Newer builds · Views · Family</span>
+      <p class="neighborhood-desc">[Describe Jordanelle — newer construction, reservoir views, family-friendly, growing area, value relative to other PC neighborhoods.]</p>
+      <p class="neighborhood-price">From $1.1M</p>
+    </div>
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">Pinebrook</h3>
+      <span class="neighborhood-tag">Established · Trails · Value</span>
+      <p class="neighborhood-desc">[Describe Pinebrook — established neighborhood, trail access, relatively more accessible price point, commuter friendly.]</p>
+      <p class="neighborhood-price">From $800K</p>
+    </div>
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">Canyons Village</h3>
+      <span class="neighborhood-tag">Ski-in · Resort · Amenities</span>
+      <p class="neighborhood-desc">[Describe Canyons Village — ski access, resort amenities, condo and townhome options, short-term rental potential.]</p>
+      <p class="neighborhood-price">From $750K</p>
+    </div>
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">Kimball Junction</h3>
+      <span class="neighborhood-tag">Convenient · Commercial · Access</span>
+      <p class="neighborhood-desc">[Describe Kimball Junction — I-80 access, shopping, mix of residential and commercial, practical choice for full-time residents.]</p>
+      <p class="neighborhood-price">From $700K</p>
+    </div>
+    <div class="neighborhood-card">
+      <h3 class="neighborhood-name">[Add Neighborhood]</h3>
+      <span class="neighborhood-tag">[Tags]</span>
+      <p class="neighborhood-desc">[Description placeholder — add as many neighborhood cards as needed.]</p>
+      <p class="neighborhood-price">From $[X]</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE -->
+<section class="lifestyle-section">
+  <span class="eyebrow">Lifestyle</span>
+  <h2 class="section-title">Life in Park City</h2>
+  <div class="lifestyle-grid">
+    <div class="lifestyle-item">
+      <span class="lifestyle-icon">⛷️</span>
+      <h3 class="lifestyle-title">World-Class Skiing</h3>
+      <p class="lifestyle-text">[Notes on skiing — resorts, terrain, season length, ski-in ski-out access, lift pass programs.]</p>
+    </div>
+    <div class="lifestyle-item">
+      <span class="lifestyle-icon">🏔️</span>
+      <h3 class="lifestyle-title">Year-Round Outdoors</h3>
+      <p class="lifestyle-text">[Hiking, biking, fishing, golf — what to do in summer and fall. Specific trails or activities Hugh recommends.]</p>
+    </div>
+    <div class="lifestyle-item">
+      <span class="lifestyle-icon">🍽️</span>
+      <h3 class="lifestyle-title">Dining & Culture</h3>
+      <p class="lifestyle-text">[Restaurant scene on Main Street, arts culture, Sundance Film Festival, events calendar, what makes it feel like a real town not just a resort.]</p>
+    </div>
+    <div class="lifestyle-item">
+      <span class="lifestyle-icon">🏡</span>
+      <h3 class="lifestyle-title">Community Feel</h3>
+      <p class="lifestyle-text">[What it's like to actually live here — neighbors, community events, schools, what Hugh hears from long-term residents.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section class="listings-section" id="listings">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Properties</span>
+      <h2 class="section-title">Deer Valley Listings</h2>
+    </div>
+    <a href="http://www.greaterparkcityrealestate.com" class="link-arrow">View All →</a>
+  </div>
+
+  <div id="listings-loading" style="padding:2rem 0; color:var(--muted); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase;">
+    Loading listings…
+  </div>
+  <div id="listings-grid" class="listings-grid" style="display:none;"></div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="hugh-cta" id="contact">
+  <div class="hugh-cta-left">
+    <span class="eyebrow">Work With Hugh</span>
+    <h2 class="section-title">Interested in<br/><em>Deer Valley?</em></h2>
+    <p class="cta-text">Hugh has guided buyers and sellers through the Deer Valley market for over 30 years. Whether you're buying your first mountain home or your fifth investment property, he knows every street, every community, and every opportunity.</p>
+    <a href="tel:8016999600" class="btn-dark">Call (801) 699-9600</a>
+  </div>
+  <div class="hugh-cta-right">
+    <span class="eyebrow" style="margin-bottom:2rem;">Send a Message</span>
+    <div class="form-row">
+      <div class="form-field">
+        <label>First Name</label>
+        <input type="text" placeholder="Jane" />
+      </div>
+      <div class="form-field">
+        <label>Last Name</label>
+        <input type="text" placeholder="Smith" />
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Email Address</label>
+      <input type="email" placeholder="jane@example.com" />
+    </div>
+    <div class="form-field">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="(801) 555-0000" />
+    </div>
+    <div class="form-field">
+      <label>I'm Looking To</label>
+      <select>
+        <option>Buy in Deer Valley</option>
+        <option>Sell in Deer Valley</option>
+        <option>Buy & Sell</option>
+        <option>Just Exploring</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Message</label>
+      <textarea placeholder="Tell Hugh what you're looking for in Deer Valley…"></textarea>
+    </div>
+    <button type="button" class="btn-dark" style="border:none; width:100%; text-align:center; font-family:'Outfit',sans-serif;">Send Message</button>
+  </div>
+</section>
+
+<!-- FOOTER (injected) -->
+<div id="footer-placeholder"></div>
+<script src="../footer.js"></script>
+
+<script>
+// ── LISTINGS FROM GOOGLE SHEET ──
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbya2-OYQ8Wc4e7xaYVjQFwWiKPOmMTMRGhL7kXvV6jxOEUkErEbKH0eFxBgzm281gvr1g/exec';
+
+// Filter keyword — adjust to match however your sheet identifies Park City listings
+const CITY_FILTER = 'deer valley';
+
+async function loadListings() {
+  try {
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
+
+    // Filter to this city's listings (status = listed, location matches)
+    const filtered = data.filter(l =>
+      l.status === 'listed' &&
+      (l.location || '').toLowerCase().includes(CITY_FILTER)
+    );
+
+    const grid = document.getElementById('listings-grid');
+    const loading = document.getElementById('listings-loading');
+
+    if (filtered.length === 0) {
+      loading.innerHTML = '<div class="no-listings">No active Deer Valley listings at this time. <a href="http://www.greaterparkcityrealestate.com" style="color:var(--black); border-bottom:1px solid var(--black);">View all listings →</a></div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(l => `
+      <a href="${l.link || '#'}" class="listing-card">
+        <div class="listing-img">
+          <img src="${l.image}" alt="${l.name}" loading="lazy" />
+          <span class="listing-tag">${l.tag}</span>
+        </div>
+        <div class="listing-body">
+          <p class="listing-location">${l.location}</p>
+          <h3 class="listing-name">${l.name}</h3>
+          <p class="listing-details">${l.details}</p>
+          <p class="listing-price">${l.price}</p>
+        </div>
+      </a>
+    `).join('');
+
+    loading.style.display = 'none';
+    grid.style.display = 'grid';
+  } catch (e) {
+    document.getElementById('listings-loading').textContent = 'Unable to load listings at this time.';
+  }
+}
+
+loadListings();
+</script>
+
+</body>
+</html>
