@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Smith Real Estate Group | Welcome2Utah.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +32,7 @@
       background: var(--white);
       color: var(--dark);
       -webkit-font-smoothing: antialiased;
-      padding-top: 72px; /* FIX: push content below fixed nav */
+      padding-top: calc(72px + env(safe-area-inset-top, 0px));
     }
 
     /* ── NAV ── */
@@ -43,8 +43,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 3.5rem;
-      height: 72px;
+      padding: env(safe-area-inset-top, 0px) 3.5rem 0;
+      height: calc(72px + env(safe-area-inset-top, 0px));
       transition: background 0.3s, border-color 0.3s;
     }
     nav.scrolled {
@@ -131,7 +131,7 @@
       min-height: 700px;
       overflow: hidden;
       /* FIX: offset the body padding so hero still fills full viewport */
-      margin-top: -72px;
+      margin-top: calc(-72px - env(safe-area-inset-top, 0px));
     }
 
     .hero-slides {
