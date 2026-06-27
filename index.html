@@ -32,7 +32,7 @@
       background: var(--white);
       color: var(--dark);
       -webkit-font-smoothing: antialiased;
-      padding-top: calc(72px + env(safe-area-inset-top, 0px));
+      padding-top: calc(72px + env(safe-area-inset-top, 20px));
     }
 
     /* ── NAV ── */
@@ -43,8 +43,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: env(safe-area-inset-top, 0px) 3.5rem 0;
-      height: calc(72px + env(safe-area-inset-top, 0px));
+      padding: env(safe-area-inset-top, 20px) 3.5rem 0;
+      padding: max(env(safe-area-inset-top, 20px), 20px) 3.5rem 0;
       transition: background 0.3s, border-color 0.3s;
     }
     nav.scrolled {
@@ -131,7 +131,7 @@
       min-height: 700px;
       overflow: hidden;
       /* FIX: offset the body padding so hero still fills full viewport */
-      margin-top: calc(-72px - env(safe-area-inset-top, 0px));
+      margin-top: calc(-72px - env(safe-area-inset-top, 20px));
     }
 
     .hero-slides {
