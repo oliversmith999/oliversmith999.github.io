@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Utah Region Guide | Welcome2Utah.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #111110;
+      --dark: #1c1c1b;
+      --mid: #4a4a48;
+      --muted: #8a8a87;
+      --border: #e2e0db;
+      --dark-cream: #e8e0cb;
+      --cream: #f5f3ee;
+      --white: #fdfcfa;
+      --accent: #efede9;
+      --accent-light: #d4b07a;
+      --accent-ligher: #dabf97;
+      --sidebar-w: 220px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      padding-top: calc(72px + env(safe-area-inset-top, 0px));
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: env(safe-area-inset-top, 0px) 3.5rem 0;
+      height: calc(72px + env(safe-area-inset-top, 0px));
+      transition: background 0.3s, border-color 0.3s;
+    }
+    nav.scrolled { background: rgba(253,252,250,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    .nav-logo { display: flex; flex-direction: column; gap: 1px; text-decoration: none; }
+    .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; }
+    nav.scrolled .nav-logo-main { color: var(--black); }
+    .nav-logo-sub { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); font-weight: 500; }
+    nav.scrolled .nav-logo-sub { color: var(--mid); }
+    .nav-center { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-center a { font-size: 0.90rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; text-decoration: none; color: rgba(253,252,250,0.8); transition: color 0.2s; }
+    nav.scrolled .nav-center a { color: var(--mid); }
+    .nav-center a:hover { color: var(--accent) !important; }
+    .nav-center a.active { color: var(--accent-light) !important; }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-phone { font-size: 1rem; font-weight: 500; color: rgba(253,252,250,0.7); text-decoration: none; transition: color 0.3s; letter-spacing: 0.02em; }
+    nav.scrolled .nav-phone { color: var(--mid); }
+    .nav-phone:hover { color: var(--accent) !important; }
+    .nav-btn { background: var(--accent-light); color: var(--white); padding: 0.55rem 1.4rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .nav-btn:hover { background: var(--accent-ligher); }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 18px; cursor: pointer; background: none; border: none; padding: 0; z-index: 600; }
+    .nav-hamburger span { display: block; width: 100%; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s, background 0.3s; transform-origin: center; }
+    nav.scrolled .nav-hamburger span { background: var(--black); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(8.25px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8.25px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(253,252,250,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 490; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform 0.3s, opacity 0.3s; }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+    .mobile-menu a { display: block; padding: 1.1rem 1.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s, background 0.2s; }
+    .mobile-menu a:hover { color: var(--black); background: var(--cream); }
+    .mobile-menu .mobile-cta { display: block; margin: 1.2rem 1.5rem; background: var(--accent-light); color: var(--white) !important; text-align: center; padding: 0.85rem !important; font-size: 0.68rem !important; border-bottom: none !important; letter-spacing: 0.16em; }
+    .mobile-menu .mobile-cta:hover { background: var(--accent-ligher) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px; overflow: hidden;
+      margin-top: calc(-72px - env(safe-area-inset-top, 0px));
+    }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.38) 50%, rgba(10,10,10,0.68) 100%); z-index: 2; }
+    .hero-content { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3.5rem 5rem; }
+    .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1.2rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 300; color: var(--white); line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 1.8rem; max-width: 780px; }
+    .hero-title em { font-style: italic; font-weight: 300; }
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+    .hero-desc { font-size: 1rem; color: rgba(253,252,250,0.75); max-width: 440px; line-height: 1.7; font-weight: 300; }
+    .hero-actions { display: flex; gap: 1rem; flex-shrink: 0; }
+    .btn-white { background: var(--white); color: var(--black); padding: 0.9rem 2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+    .btn-white:hover { background: var(--cream); transform: translateY(-1px); }
+    .btn-ghost { border: 1px solid rgba(253,252,250,0.45); color: var(--white); padding: 0.9rem 2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+    .btn-ghost:hover { border-color: rgba(253,252,250,0.8); background: rgba(253,252,250,0.08); }
+
+    /* ── STATS BAR ── */
+    .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
+    .stat { padding: 3rem 3.5rem; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--black); line-height: 1; display: block; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+
+    /* ── SHARED TYPOGRAPHY ── */
+    .eyebrow { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--black); font-weight: 500; display: block; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: var(--black); line-height: 1.1; }
+    .section-title em { font-style: italic; }
+    .link-arrow { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--black); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; padding-bottom: 2px; border-bottom: 1px solid var(--black); transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+    .link-arrow:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+    /* ── SIDEBAR LAYOUT ── */
+    .page-body {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      align-items: start;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: calc(72px + env(safe-area-inset-top, 0px));
+      height: calc(100vh - 72px - env(safe-area-inset-top, 0px));
+      overflow-y: auto;
+      scrollbar-width: none;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 0;
+    }
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    .sidebar-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      padding: 0 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .sidebar-group { margin-bottom: 2rem; }
+
+    .sidebar-group-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-weight: 600;
+      padding: 0 1.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.6rem 1.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      line-height: 1.3;
+    }
+    .sidebar-link:hover { color: var(--dark); background: var(--cream); }
+    .sidebar-link.active { color: var(--black); border-left-color: var(--accent-light); background: var(--cream); font-weight: 600; }
+
+    .sidebar-divider { height: 1px; background: var(--border); margin: 1rem 1.8rem; }
+
+    .sidebar-cta {
+      margin: auto 1.8rem 0;
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 1rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s;
+      display: block;
+      flex-shrink: 0;
+    }
+    .sidebar-cta:hover { background: var(--dark); }
+
+    /* ── MAIN CONTENT ── */
+    .main-content { min-width: 0; }
+
+    /* ── INTRO ── */
+    .intro-section { display: grid; grid-template-columns: 55% 45%; border-bottom: 1px solid var(--border); }
+    .intro-visual { position: relative; overflow: hidden; min-height: 480px; }
+    .intro-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .intro-content { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
+    .intro-content .section-title { margin: 0.6rem 0 2rem; }
+    .intro-text { font-size: 0.95rem; color: var(--mid); line-height: 1.85; font-weight: 300; margin-bottom: 1.2rem; }
+
+    /* ── MAP ── */
+    .map-section { padding: 5rem 4rem; background: var(--cream); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .map-legend-group { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+    .legend-row { display: flex; align-items: center; gap: 1rem; }
+    .legend-bar { width: 24px; height: 3px; flex-shrink: 0; }
+    .legend-bar.back  { background: #5a8a6a; }
+    .legend-bar.front { background: #4a7aaa; }
+    .legend-bar.beyond{ background: #b09070; }
+    .legend-label { font-size: 0.78rem; color: var(--mid); }
+    .legend-label strong { color: var(--dark); font-weight: 500; }
+
+    /* ── REGION BANNER ── */
+    .region-banner { background: var(--black); padding: 3.5rem 4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .region-banner-eyebrow { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; display: block; margin-bottom: 0.7rem; }
+    .region-banner-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--white); line-height: 1.05; margin-bottom: 1rem; }
+    .region-banner-title em { font-style: italic; }
+    .region-banner-desc { font-size: 0.9rem; color: rgba(253,252,250,0.45); max-width: 560px; line-height: 1.8; font-weight: 300; }
+
+    /* ── COMMUNITY SECTIONS ── */
+    .communities-section { padding: 5rem 4rem; }
+    .communities-section .section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
+    .community-grid { display: grid; gap: 1.5px; background: var(--border); }
+    .community-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .community-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .community-card { position: relative; overflow: hidden; aspect-ratio: 3/4; text-decoration: none; display: block; background: var(--dark); }
+    .community-card.wide { aspect-ratio: 16/9; }
+    .community-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .community-card:hover img { transform: scale(1.05); }
+    .community-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.82) 0%, transparent 55%); }
+    .community-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; }
+    .community-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--white); display: block; line-height: 1.1; margin-bottom: 0.3rem; }
+    .community-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; }
+
+    .detail-card { background: var(--cream); padding: 2.8rem 2.5rem; border-right: 1px solid var(--border); }
+    .detail-card:last-child { border-right: none; }
+    .detail-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--border); line-height: 1; display: block; margin-bottom: 1.5rem; }
+    .detail-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; color: var(--black); margin-bottom: 0.3rem; }
+    .detail-name em { font-style: italic; }
+    .detail-sub { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 1.2rem; display: block; }
+    .detail-text { font-size: 0.88rem; color: var(--mid); line-height: 1.8; }
+    .detail-facts { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .detail-fact { font-size: 0.78rem; color: var(--muted); display: flex; align-items: baseline; gap: 0.6rem; }
+    .detail-fact::before { content: '—'; color: var(--accent-light); flex-shrink: 0; font-size: 0.7rem; }
+
+    /* ── BEYOND ── */
+    .beyond-section { background: var(--black); padding: 5rem 4rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .beyond-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; }
+    .beyond-head .section-title { color: var(--white); }
+    .beyond-head .eyebrow { color: var(--accent-light); }
+    .beyond-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .beyond-place { background: var(--off-black); padding: 2.5rem; }
+    .beyond-place-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); margin-bottom: 0.7rem; line-height: 1.1; }
+    .beyond-place-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+    /* ── CALLOUT ── */
+    .callout-section { display: grid; grid-template-columns: 55% 45%; border-top: 1px solid var(--border); }
+    .callout-visual { position: relative; overflow: hidden; min-height: 520px; }
+    .callout-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .callout-label { position: absolute; bottom: 2.5rem; right: 2.5rem; background: var(--white); padding: 1.5rem 2rem; text-align: right; }
+    .callout-label-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--black); line-height: 1; display: block; }
+    .callout-label-text { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .callout-content { background: var(--black); padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .callout-eyebrow { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; display: block; margin-bottom: 0.7rem; }
+    .callout-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--white); line-height: 1.05; margin-bottom: 2rem; }
+    .callout-title em { font-style: italic; }
+    .callout-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(253,252,250,0.6); line-height: 1.7; border-left: 2px solid var(--accent-light); padding-left: 1.2rem; margin-bottom: 2.5rem; max-width: 360px; font-weight: 300; }
+    .callout-body { font-size: 0.88rem; color: rgba(253,252,250,0.38); line-height: 1.85; font-weight: 300; max-width: 340px; margin-bottom: 2.5rem; }
+    .btn-dark { background: var(--white); color: var(--black); padding: 0.9rem 2rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; display: inline-block; align-self: flex-start; }
+    .btn-dark:hover { background: var(--cream); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 5rem 4rem 2rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--white); margin-bottom: 0.3rem; }
+    .footer-brand-tag { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.2rem; display: block; }
+    .footer-brand-desc { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 280px; }
+    .footer-col-title { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent-light); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+    .footer-legal { display: flex; gap: 2rem; }
+    .footer-legal a { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      :root { --sidebar-w: 190px; }
+      .map-section { gap: 3rem; }
+    }
+    @media (max-width: 1024px) {
+      /* Sidebar becomes a horizontal scroll bar at top */
+      .page-body { grid-template-columns: 1fr; }
+      .sidebar {
+        position: sticky;
+        top: calc(72px + env(safe-area-inset-top, 0px));
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        z-index: 400;
+        gap: 0;
+        align-items: center;
+      }
+      .sidebar-label, .sidebar-group-label, .sidebar-divider, .sidebar-cta { display: none; }
+      .sidebar-group { display: contents; margin: 0; }
+      .sidebar-link {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        padding: 1rem 1.2rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+        background: transparent !important;
+      }
+      .sidebar-link.active { border-left: none; border-bottom-color: var(--accent-light); background: transparent !important; }
+      nav { padding: 0 2rem; }
+      .hero-content { padding: 0 2rem 4rem; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .intro-section { grid-template-columns: 1fr; }
+      .intro-content { padding: 4rem 2rem; border-left: none; border-top: 1px solid var(--border); }
+      .map-section { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
+      .communities-section { padding: 4rem 2rem; }
+      .community-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+      .callout-section { grid-template-columns: 1fr; }
+      .callout-content { padding: 4rem 2rem; }
+      .beyond-section { padding: 4rem 2rem; }
+      .beyond-grid { grid-template-columns: repeat(2, 1fr); }
+      .region-banner { padding: 3rem 2rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      footer { padding: 4rem 2rem 2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-center, .nav-phone, .nav-btn { display: none; }
+      .nav-logo-main { font-size: 1.6rem; }
+      .nav-logo-sub { font-size: 0.65rem; letter-spacing: 0.14em; }
+      nav { padding: 0 1.5rem; }
+      .nav-hamburger { display: flex; }
+      .mobile-menu { display: block; }
+      .hero-title { font-size: 3rem; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 2rem 1.5rem; }
+      .community-grid.cols-2, .community-grid.cols-3 { grid-template-columns: 1fr; }
+      .community-card.wide { aspect-ratio: 4/3; }
+      .beyond-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .sidebar { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div id="nav-placeholder"></div>
+<script src="nav.js"></script>
+
+<!-- HERO (full width, outside sidebar layout) -->
+<section class="hero">
+  <img src="https://as1.ftcdn.net/v2/jpg/13/15/28/82/1000_F_1315288262_ui5TL26Q7oxCJTxjZnsjLImBGQViSqeC.jpg" alt="SLC" alt="Utah mountains" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Wasatch Back · Wasatch Front · Beyond the Corridor</p>
+    <h1 class="hero-title">Utah is Bigger<br/><em>Than You Think</em></h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">Thirty years of transactions from Bear Lake to Moab. Here's Hugh's read on the places people keep coming back to.</p>
+      <div class="hero-actions">
+        <a href="#wasatch-back" class="btn-white">Explore the Regions</a>
+        <a href="index.html#contact" class="btn-ghost">Talk to Hugh</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS (full width) -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num">30+</span>
+    <span class="stat-label">Years in Utah Real Estate</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">5</span>
+    <span class="stat-label">Counties, One Trusted Agent</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Referral Driven</span>
+  </div>
+</div>
+
+<!-- SIDEBAR + MAIN CONTENT -->
+<div class="page-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <span class="sidebar-label">On This Page</span>
+
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Wasatch Back</span>
+      <a href="#wasatch-back" class="sidebar-link" data-section="wasatch-back">Overview</a>
+      <a href="#park-city" class="sidebar-link" data-section="park-city">Park City</a>
+      <a href="#heber-midway" class="sidebar-link" data-section="heber-midway">Heber &amp; Midway</a>
+      <a href="#kamas-oakley" class="sidebar-link" data-section="kamas-oakley">Kamas &amp; Oakley</a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Wasatch Front</span>
+      <a href="#wasatch-front" class="sidebar-link" data-section="wasatch-front">Overview</a>
+      <a href="#salt-lake" class="sidebar-link" data-section="salt-lake">Salt Lake Valley</a>
+      <a href="#utah-county" class="sidebar-link" data-section="utah-county">Utah County</a>
+      <a href="#davis-county" class="sidebar-link" data-section="davis-county">Davis County</a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-group">
+      <a href="#beyond" class="sidebar-link" data-section="beyond">Beyond the Corridor</a>
+    </div>
+
+    <a href="index.html#contact" class="sidebar-cta">Talk to Hugh</a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- INTRO -->
+    <section class="intro-section">
+      <div class="intro-visual">
+        <img src="https://media.istockphoto.com/id/501849708/photo/snowy-riges-behind-hidden-peak.jpg?s=1024x1024&w=is&k=20&c=NNnBcWlqNbHy8Fi4F0cAFwlKfn9fhRM0k0_9OvYsdQo=" alt="Wasatch Range" />
+      </div>
+      <div class="intro-content fade-up">
+        <span class="eyebrow">The Lay of the Land</span>
+        <h2 class="section-title">One State,<br/><em>Many Worlds</em></h2>
+        <p class="intro-text">The Wasatch Mountains split Utah into two different real estate markets. East of the range — the Wasatch Back — means resort towns, open valleys, and a quieter pace. West of the range — the Wasatch Front — is Utah's urban spine, running from Ogden through Salt Lake to Provo.</p>
+        <p class="intro-text">Then there's everything else. Moab. Bear Lake. St. George. Utah has more variety than most buyers realize, and Hugh has worked all of it.</p>
+        <p class="intro-text">This page isn't meant to replace a conversation. It's meant to orient you before you have one.</p>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+      <div class="fade-up">
+        <span class="eyebrow">Reading the Map</span>
+        <h2 class="section-title">Two Sides of<br/><em>the Mountains</em></h2>
+        <div class="map-legend-group">
+          <div class="legend-row">
+            <span class="legend-bar back"></span>
+            <span class="legend-label"><strong>Wasatch Back</strong> — Park City, Heber Valley, Kamas, Oakley, Midway</span>
+          </div>
+          <div class="legend-row">
+            <span class="legend-bar front"></span>
+            <span class="legend-label"><strong>Wasatch Front</strong> — Salt Lake Valley, Utah County, Davis County</span>
+          </div>
+          <div class="legend-row">
+            <span class="legend-bar beyond"></span>
+            <span class="legend-label"><strong>Beyond the Corridor</strong> — Bear Lake, Moab, St. George, and more</span>
+          </div>
+        </div>
+        <br/>
+        <a href="index.html#contact" class="link-arrow">Not sure where to look? Ask Hugh →</a>
+      </div>
+      <div>
+        <svg viewBox="0 0 340 430" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+          <title>Utah regions map</title>
+          <polygon points="38,28 245,28 245,130 302,130 302,396 38,396" fill="#f0ede6" stroke="#c8c4bc" stroke-width="1.5" stroke-linejoin="round"/>
+          <polygon points="38,82 106,82 106,285 38,285" fill="#4a7aaa" fill-opacity="0.18" stroke="none"/>
+          <polygon points="106,82 208,82 208,200 106,200" fill="#5a8a6a" fill-opacity="0.18" stroke="none"/>
+          <polyline points="104,74 108,98 102,120 108,145 104,170 110,195 104,215" fill="none" stroke="#8aaa9a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3"/>
+          <polygon points="38,28 245,28 245,130 302,130 302,396 38,396" fill="none" stroke="#9a9590" stroke-width="1.5" stroke-linejoin="round"/>
+          <ellipse cx="228" cy="52" rx="6" ry="9" fill="#4a7aaa" fill-opacity="0.5"/>
+          <text x="238" y="56" font-family="'Outfit',sans-serif" font-size="8.5" fill="#6a5030" font-weight="500">Bear Lake</text>
+          <circle cx="140" cy="108" r="5.5" fill="#5a8a6a"/>
+          <text x="150" y="112" font-family="'Outfit',sans-serif" font-size="9.5" fill="#2e5a3e" font-weight="600">Park City</text>
+          <circle cx="158" cy="130" r="4" fill="#5a8a6a" fill-opacity="0.75"/>
+          <text x="166" y="134" font-family="'Outfit',sans-serif" font-size="8" fill="#2e5a3e">Kamas / Oakley</text>
+          <circle cx="148" cy="152" r="4.5" fill="#5a8a6a" fill-opacity="0.85"/>
+          <text x="157" y="156" font-family="'Outfit',sans-serif" font-size="8.5" fill="#2e5a3e" font-weight="500">Heber / Midway</text>
+          <circle cx="66" cy="85" r="4.5" fill="#4a7aaa" fill-opacity="0.8"/>
+          <text x="76" y="89" font-family="'Outfit',sans-serif" font-size="8.5" fill="#1e4a7a" font-weight="500">Davis / Ogden</text>
+          <circle cx="70" cy="118" r="6.5" fill="#4a7aaa"/>
+          <text x="81" y="122" font-family="'Outfit',sans-serif" font-size="9.5" fill="#1e4a7a" font-weight="600">Salt Lake City</text>
+          <circle cx="76" cy="162" r="5.5" fill="#4a7aaa" fill-opacity="0.9"/>
+          <text x="86" y="166" font-family="'Outfit',sans-serif" font-size="9" fill="#1e4a7a" font-weight="500">Utah County</text>
+          <circle cx="240" cy="298" r="4.5" fill="#b09070" fill-opacity="0.8"/>
+          <text x="222" y="311" font-family="'Outfit',sans-serif" font-size="8.5" fill="#6a4a2a" font-weight="500">Moab</text>
+          <circle cx="58" cy="362" r="4.5" fill="#b09070" fill-opacity="0.8"/>
+          <text x="68" y="366" font-family="'Outfit',sans-serif" font-size="8.5" fill="#6a4a2a" font-weight="500">St. George</text>
+          <text x="72" y="235" font-family="'Cormorant Garamond',Georgia,serif" font-size="10.5" fill="#4a7aaa" fill-opacity="0.5" font-style="italic" text-anchor="middle">Wasatch Front</text>
+          <text x="160" y="178" font-family="'Cormorant Garamond',Georgia,serif" font-size="10.5" fill="#5a8a6a" fill-opacity="0.5" font-style="italic" text-anchor="middle">Wasatch Back</text>
+          <text x="195" y="305" font-family="'Cormorant Garamond',Georgia,serif" font-size="9.5" fill="#b09070" fill-opacity="0.5" font-style="italic" text-anchor="middle">Canyon Country</text>
+          <polygon points="295,372 292,381 298,381" fill="#9a9590"/>
+          <line x1="295" y1="381" x2="295" y2="392" stroke="#9a9590" stroke-width="0.8"/>
+          <text x="295" y="371" font-family="'Outfit',sans-serif" font-size="8" fill="#9a9590" text-anchor="middle">N</text>
+          <line x1="38" y1="410" x2="90" y2="410" stroke="#b8b4ac" stroke-width="1"/>
+          <text x="64" y="421" font-family="'Outfit',sans-serif" font-size="7.5" fill="#9a9590" text-anchor="middle">approx. 100 mi</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- WASATCH BACK -->
+    <div id="wasatch-back">
+      <div class="region-banner fade-up">
+        <span class="region-banner-eyebrow">East of the Range</span>
+        <h2 class="region-banner-title">The Wasatch <em>Back</em></h2>
+        <p class="region-banner-desc">Quieter roads. More sky. The back side of the Wasatch trades urban convenience for something harder to put a price on — space, community, and a view that never gets old. Hugh's roots run deepest here.</p>
+      </div>
+    </div>
+
+    <!-- Park City -->
+    <section class="communities-section" id="park-city">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Back · Summit County</span>
+          <h2 class="section-title">Park City</h2>
+        </div>
+        <a href="communities/park-city.html" class="link-arrow">Full Park City guide →</a>
+      </div>
+      <div class="community-grid cols-2" style="margin-bottom: 1.5px;">
+        <a href="communities/park-city.html" class="community-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/03/73/51/06/1000_F_373510622_0cyVHnCNey1Nm1zhKPVj2Avnt9ZBgACW.jpg" alt="Park City mountain" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Old Town</span>
+            <span class="community-tag">Historic · Main Street · Victorian homes</span>
+          </div>
+        </a>
+        <a href="communities/park-city.html" class="community-card">
+          <img src="https://media.istockphoto.com/id/501849708/photo/snowy-riges-behind-hidden-peak.jpg?s=1024x1024&w=is&k=20&c=NNnBcWlqNbHy8Fi4F0cAFwlKfn9fhRM0k0_9OvYsdQo=" alt="Deer Valley" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Deer Valley</span>
+            <span class="community-tag">Ski-in/ski-out · Luxury · Resort community</span>
+          </div>
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">The Town</h3>
+          <span class="detail-sub">Mountain living with real culture</span>
+          <p class="detail-text">Park City started as a silver mining camp and became one of the most recognized ski towns in the world. Main Street still feels like a real place — restaurants, galleries, a working arts scene — not a resort village built from scratch. The Sundance Film Festival brings a different crowd every January. The rest of the year belongs to the people who actually live here.</p>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">The Market</h3>
+          <span class="detail-sub">Global demand, tight inventory</span>
+          <p class="detail-text">Park City draws buyers from across the country and internationally. Two world-class resorts — Park City Mountain and Deer Valley — anchor demand that doesn't move much with economic cycles. Entry-level condos start around $600K. A ski-in/ski-out estate can reach $15M or more. If something comes up that you like, you won't have long to think about it.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Price range: $600K – $15M+</span>
+            <span class="detail-fact">35 min to SLC International</span>
+            <span class="detail-fact">Park City Mountain &amp; Deer Valley ski access</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">03</span>
+          <h3 class="detail-name">Neighborhoods</h3>
+          <span class="detail-sub">Something for every buyer</span>
+          <p class="detail-text">Old Town for walkability and character. Deer Valley and Empire Pass for ski-in/ski-out luxury. Promontory for gated ranch living with a golf course. Canyons Village for slope-side convenience. Park Meadows and Pinebrook for families who want a neighborhood feel without the resort price tag. Hugh knows every pocket.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heber & Midway -->
+    <section class="communities-section" id="heber-midway" style="background:var(--cream);">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Back · Wasatch County</span>
+          <h2 class="section-title">Heber <em>&amp; Midway</em></h2>
+        </div>
+        <a href="communities/heber-midway.html" class="link-arrow">Full Heber guide →</a>
+      </div>
+      <div class="community-grid cols-2" style="margin-bottom:1.5px;">
+        <a href="communities/heber-midway.html" class="community-card">
+          <img src="images/timpview.jpg" alt="Heber Valley" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Heber Valley</span>
+            <span class="community-tag">Open land · Custom homes · Mountain views</span>
+          </div>
+        </a>
+        <a href="communities/heber-midway.html" class="community-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/04/47/69/97/1000_F_447699791_MuzOkiqn5Rpiqt0uqAzQiBcr2P0ijwj1.jpg" alt="Midway" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Midway</span>
+            <span class="community-tag">Swiss heritage · Hot springs · Village character</span>
+          </div>
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">The Valley</h3>
+          <span class="detail-sub">Space that Park City can't offer</span>
+          <p class="detail-text">Heber Valley sits at 5,600 feet behind the Wasatch Range — a wide, open basin with working farms, custom-built estates, and a pace of life that's genuinely different from the resort corridor. Midway, settled by Swiss immigrants in the 1800s, has held onto its character in a way that's rare. Hot pots, a Bavarian feel on the town square, and neighbors who know each other by name.</p>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">The Value</h3>
+          <span class="detail-sub">More land per dollar</span>
+          <p class="detail-text">Heber and Midway consistently offer more for your money than anywhere else on the Wasatch Back. You're still close to Deer Valley and Jordanelle Reservoir — but the price per square foot drops considerably the moment you cross the hill. Families who want acreage, equestrian properties, or a custom build find the best options here.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Price range: $400K – $4M</span>
+            <span class="detail-fact">50 min to SLC, 20 min to Deer Valley</span>
+            <span class="detail-fact">Jordanelle &amp; Deer Creek reservoirs nearby</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">03</span>
+          <h3 class="detail-name">Recreation</h3>
+          <span class="detail-sub">Four seasons, no crowds</span>
+          <p class="detail-text">Jordanelle Reservoir for boating and paddleboarding. Deer Creek for fishing. Soldier Hollow for cross-country skiing and summer trail running. The Heber Creeper historic railway runs through the canyon year-round. And Deer Valley is a 20-minute drive over the hill for those who want the ski access without the ski-town prices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kamas & Oakley -->
+    <section class="communities-section" id="kamas-oakley">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Back · Summit County</span>
+          <h2 class="section-title">Kamas <em>&amp; Oakley</em></h2>
+        </div>
+      </div>
+      <div class="community-grid cols-2" style="margin-bottom:1.5px;">
+        <a href="#" class="community-card wide">
+          <img src="https://as1.ftcdn.net/v2/jpg/03/73/51/06/1000_F_373510622_0cyVHnCNey1Nm1zhKPVj2Avnt9ZBgACW.jpg" alt="Kamas Valley" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Kamas Valley</span>
+            <span class="community-tag">Gateway to the Uintas · Agricultural roots · Room to breathe</span>
+          </div>
+        </a>
+        <a href="#" class="community-card wide">
+          <img src="https://as2.ftcdn.net/v2/jpg/01/14/83/27/1000_F_114832736_18oi6BfQ3zdQDv7vW0zU8IoRd7UYMCKD.jpg" alt="Oakley" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Oakley</span>
+            <span class="community-tag">Small town · Ranch land · Summit County character</span>
+          </div>
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">What Draws People Here</h3>
+          <span class="detail-sub">The last affordable Summit County address</span>
+          <p class="detail-text">Kamas and Oakley sit at the eastern edge of Summit County, where the valley opens toward the Uinta Mountains and the pace slows considerably. Communities built on agriculture and outdoor access — not resort infrastructure. Larger lots, lower price points, and a genuinely rural feel that's 20 minutes from Park City but a world away in character.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Entry pricing well below Park City</span>
+            <span class="detail-fact">20 min to Park City Mountain Resort</span>
+            <span class="detail-fact">Direct access to Uinta National Forest</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">Who It's For</h3>
+          <span class="detail-sub">Summit County without the sticker shock</span>
+          <p class="detail-text">Buyers who love the proximity to Park City but want land, privacy, and a community that isn't defined by tourism. Equestrian properties are common. Multi-acre parcels with outbuildings and irrigation rights still come available. If you're building a custom home in Summit County without a resort budget, this is where Hugh looks first.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WASATCH FRONT -->
+    <div id="wasatch-front">
+      <div class="region-banner fade-up">
+        <span class="region-banner-eyebrow">The Populated Corridor</span>
+        <h2 class="region-banner-title">The Wasatch <em>Front</em></h2>
+        <p class="region-banner-desc">Utah's urban spine from Ogden to Provo. Better infrastructure, more inventory, and direct flights everywhere. The Front is where most of Utah's growth story is being written right now.</p>
+      </div>
+    </div>
+
+    <!-- Salt Lake Valley -->
+    <section class="communities-section" id="salt-lake" style="background:var(--cream);">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Front · Salt Lake County</span>
+          <h2 class="section-title">Salt Lake Valley</h2>
+        </div>
+        <a href="communities/salt-lake-valley.html" class="link-arrow">Full SLC guide →</a>
+      </div>
+      <div class="community-grid cols-3" style="margin-bottom:1.5px;">
+        <a href="communities/salt-lake-valley.html" class="community-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/13/15/28/82/1000_F_1315288262_ui5TL26Q7oxCJTxjZnsjLImBGQViSqeC.jpg" alt="Salt Lake City" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Salt Lake City</span>
+            <span class="community-tag">Urban core · The Avenues · Sugarhouse</span>
+          </div>
+        </a>
+        <a href="communities/salt-lake-valley.html" class="community-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/01/14/83/27/1000_F_114832736_18oi6BfQ3zdQDv7vW0zU8IoRd7UYMCKD.jpg" alt="Cottonwood Canyons" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Cottonwood Canyons</span>
+            <span class="community-tag">Alta · Snowbird · Brighton · Solitude</span>
+          </div>
+        </a>
+        <a href="communities/salt-lake-valley.html" class="community-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/04/47/69/97/1000_F_447699791_MuzOkiqn5Rpiqt0uqAzQiBcr2P0ijwj1.jpg" alt="South Valley" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">South Valley</span>
+            <span class="community-tag">Draper · South Jordan · Sandy</span>
+          </div>
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">The Hub</h3>
+          <span class="detail-sub">Everything Utah offers, within reach</span>
+          <p class="detail-text">Salt Lake is where Utah's connectivity lives. The airport runs direct flights to most major US cities and several international destinations. Seven world-class ski resorts — Alta, Snowbird, Brighton, Solitude, and the Park City resorts — are all within 45 minutes. Neighborhoods range from walkable urban to spacious suburban to canyon-adjacent. Hugh knows all of them.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Price range: $350K – $3M+</span>
+            <span class="detail-fact">Direct flights from SLC International nationwide</span>
+            <span class="detail-fact">Seven ski resorts within 45 minutes</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">Neighborhoods</h3>
+          <span class="detail-sub">More variety than most people expect</span>
+          <p class="detail-text">The Avenues above downtown for Victorian character and walkability. Sugarhouse for bungalows close to the city. Holladay and Millcreek for larger lots and canyon proximity. Draper and South Jordan for newer construction and good schools. East Bench for views against the mountain. Each area has a distinct personality — the right one depends entirely on how you want to live.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Utah County -->
+    <section class="communities-section" id="utah-county">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Front · Utah County</span>
+          <h2 class="section-title">Utah County</h2>
+        </div>
+        <a href="communities/utah-county.html" class="link-arrow">Full Utah County guide →</a>
+      </div>
+      <div class="community-grid cols-2" style="margin-bottom:1.5px;">
+        <a href="communities/utah-county.html" class="community-card">
+          <img src="https://as2.ftcdn.net/v2/jpg/04/47/69/97/1000_F_447699791_MuzOkiqn5Rpiqt0uqAzQiBcr2P0ijwj1.jpg" alt="Provo Utah" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Provo &amp; Orem</span>
+            <span class="community-tag">University towns · Established neighborhoods</span>
+          </div>
+        </a>
+        <a href="communities/utah-county.html" class="community-card">
+          <img src="https://as1.ftcdn.net/v2/jpg/03/73/51/06/1000_F_373510622_0cyVHnCNey1Nm1zhKPVj2Avnt9ZBgACW.jpg" alt="Lehi Silicon Slopes" />
+          <div class="community-gradient"></div>
+          <div class="community-body">
+            <span class="community-name">Lehi &amp; American Fork</span>
+            <span class="community-tag">Silicon Slopes · Tech corridor · New development</span>
+          </div>
+        </a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">Growth Country</h3>
+          <span class="detail-sub">The fastest-moving market Hugh watches</span>
+          <p class="detail-text">Utah County has grown faster than almost anywhere in the country over the past decade. BYU and UVU anchor the north end. Silicon Slopes — the tech corridor running from Lehi through Orem — has brought serious corporate investment and a younger professional demographic. New developments expanding south into Spanish Fork, Payson, and Springville. Hugh's take: buy before the growth catches up to the price.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Price range: $300K – $2M</span>
+            <span class="detail-fact">FrontRunner commuter rail to SLC</span>
+            <span class="detail-fact">Mount Timpanogos, Provo Canyon recreation</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">Community</h3>
+          <span class="detail-sub">Deep roots, strong schools</span>
+          <p class="detail-text">Utah County has a distinct culture built around community, family, and faith. School ratings here are consistently strong. Neighborhoods tend to be well-maintained and neighbor-involved in a way that's harder to find in larger metros. For buyers who prioritize community alongside real estate fundamentals, Utah County consistently delivers at price points that still make sense.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Davis County -->
+    <section class="communities-section" id="davis-county" style="background:var(--cream);">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Wasatch Front · Davis County</span>
+          <h2 class="section-title">Davis County</h2>
+        </div>
+        <a href="communities/davis-county.html" class="link-arrow">Full Davis County guide →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); background:var(--border); gap:1.5px;">
+        <div class="detail-card fade-up" style="border-right:none;">
+          <span class="detail-num">01</span>
+          <h3 class="detail-name">The Quiet Achiever</h3>
+          <span class="detail-sub">Consistently undervalued, consistently good</span>
+          <p class="detail-text">Davis County runs along the eastern shore of the Great Salt Lake between Salt Lake City and Ogden. Bountiful, Centerville, Farmington, Kaysville — established communities with mature landscaping, strong schools, and a suburban quality of life that's hard to fault. The commute to SLC is around 20 minutes by car or FrontRunner. Hugh has watched buyers overlook Davis for years and quietly benefit from it.</p>
+          <div class="detail-facts">
+            <span class="detail-fact">Price range: $320K – $1.5M</span>
+            <span class="detail-fact">~20 min to Salt Lake City</span>
+            <span class="detail-fact">FrontRunner commuter rail through the county</span>
+          </div>
+        </div>
+        <div class="detail-card fade-up">
+          <span class="detail-num">02</span>
+          <h3 class="detail-name">Farmington Station</h3>
+          <span class="detail-sub">A commuter hub that became a destination</span>
+          <p class="detail-text">Farmington Station Park — built around the FrontRunner rail stop — has transformed a quiet suburb into a walkable mixed-use area with retail, restaurants, and entertainment. It's drawn new development and younger buyers who want suburban square footage with urban-adjacent energy. The area has appreciated steadily and continues to attract buyers priced out of Salt Lake neighborhoods.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEYOND -->
+    <section class="beyond-section" id="beyond">
+      <div class="beyond-head">
+        <div>
+          <span class="eyebrow" style="color:var(--accent-light);">Hugh Goes Where Clients Need Him</span>
+          <h2 class="section-title" style="color:var(--white);">Beyond the<br/><em>Corridor</em></h2>
+        </div>
+      </div>
+      <p style="font-size:0.95rem; color:rgba(253,252,250,0.45); max-width:600px; line-height:1.85; font-weight:300; margin-bottom:3rem;">About 80% of Hugh's business comes from the communities above. The other 20% is everything else Utah has to offer. If you have your eye on something outside the Wasatch, he can help.</p>
+      <div class="beyond-grid">
+        <div class="beyond-place">
+          <p class="beyond-place-name">Bear Lake</p>
+          <p class="beyond-place-desc">Turquoise water on the Idaho border. Cabins, vacation properties, and one of Utah's most distinctive lake communities.</p>
+        </div>
+        <div class="beyond-place">
+          <p class="beyond-place-name">Moab</p>
+          <p class="beyond-place-desc">Red rock country with Arches and Canyonlands at the door. A strong short-term rental market and serious outdoor access.</p>
+        </div>
+        <div class="beyond-place">
+          <p class="beyond-place-name">St. George</p>
+          <p class="beyond-place-desc">Utah's warm-weather anchor. Zion Canyon nearby. Retirees, snowbirds, and a growing technology and commercial presence.</p>
+        </div>
+        <div class="beyond-place">
+          <p class="beyond-place-name">Cache Valley</p>
+          <p class="beyond-place-desc">Logan and the Bear River Mountains. Utah State University town with genuine small-city character and underrated outdoor access.</p>
+        </div>
+        <div class="beyond-place">
+          <p class="beyond-place-name">Cedar City</p>
+          <p class="beyond-place-desc">Southern Utah University, Cedar Breaks National Monument, and a growing arts community between SLC and St. George.</p>
+        </div>
+        <div class="beyond-place">
+          <p class="beyond-place-name">Somewhere Else</p>
+          <p class="beyond-place-desc">If you've found a place in Utah that speaks to you, call Hugh. Thirty years of statewide relationships cover a lot of ground.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALLOUT -->
+    <section class="callout-section">
+      <div class="callout-visual">
+        <img src="images/Hugh photo.jpg" alt="Hugh Smith, REALTOR®" />
+        <div class="callout-label">
+          <span class="callout-label-num">30+</span>
+          <span class="callout-label-text">Years of Experience</span>
+        </div>
+      </div>
+      <div class="callout-content fade-up">
+        <span class="callout-eyebrow">The Point of This Page</span>
+        <h2 class="callout-title">Skip the<br/><em>Research Rabbit Hole</em></h2>
+        <blockquote class="callout-quote">"Every buyer I work with has already spent weeks reading articles. What they actually need is someone who's driven every road and can tell them what a neighborhood is really like."</blockquote>
+        <p class="callout-body">No form letter. No junior agent handoff. Hugh picks up the phone. Whether you're two years out or ready to move next month, the conversation costs nothing.</p>
+        <a href="index.html#contact" class="btn-dark">Talk to Hugh Directly</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div>
+          <p class="footer-brand-name">Smith Real Estate Group</p>
+          <span class="footer-brand-tag">Welcome2Utah.com</span>
+          <p class="footer-brand-desc">Hugh Smith, REALTOR® — 30+ years guiding buyers and sellers across Utah's most sought-after communities.</p>
+        </div>
+        <div>
+          <p class="footer-col-title">Regions</p>
+          <ul class="footer-links">
+            <li><a href="#park-city">Park City</a></li>
+            <li><a href="#heber-midway">Heber &amp; Midway</a></li>
+            <li><a href="#kamas-oakley">Kamas &amp; Oakley</a></li>
+            <li><a href="#salt-lake">Salt Lake Valley</a></li>
+            <li><a href="#utah-county">Utah County</a></li>
+            <li><a href="#davis-county">Davis County</a></li>
+            <li><a href="#beyond">Beyond the Corridor</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="index.html#listings">Browse Listings</a></li>
+            <li><a href="index.html#about">About Hugh</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="http://www.greaterparkcityrealestate.idxbroker.com/idx/search/emailupdatesignup">Listing Alerts</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Contact</p>
+          <ul class="footer-links">
+            <li><a href="tel:8016999600">(801) 699-9600</a></li>
+            <li><a href="index.html#contact">Send a Message</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Smith Real Estate Group · Welcome2Utah.com · All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Fair Housing</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div><!-- end .page-body -->
+
+<script>
+  // Nav scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+    }
+  });
+
+  // Fade up on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Sidebar active state
+  const sections = ['wasatch-back','park-city','heber-midway','kamas-oakley','wasatch-front','salt-lake','utah-county','davis-county','beyond'];
+  const sidebarLinks = document.querySelectorAll('.sidebar-link[data-section]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 200) current = id;
+    });
+    sidebarLinks.forEach(link => {
+      link.classList.toggle('active', link.dataset.section === current);
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>

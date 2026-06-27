@@ -6,18 +6,6 @@
   const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
   const root = isIndex ? '' : '../';
 
-  const cities = [
-    { name: 'Park City',       file: 'park-city' },
-    { name: 'Deer Valley',     file: 'deer-valley' },
-    { name: 'Heber & Midway',  file: 'heber-midway' },
-    { name: 'Salt Lake Valley',file: 'salt-lake-valley' },
-    { name: 'Utah County',     file: 'utah-county' },
-  ];
-
-  const cityLinks = cities.map(c =>
-    `<li><a href="${root}communities/${c.file}.html">${c.name}</a></li>`
-  ).join('');
-
   const navHTML = `
 <nav id="navbar">
   <a href="${root}index.html" class="nav-logo">
@@ -26,14 +14,7 @@
   </a>
   <ul class="nav-center">
     <li><a href="${root}index.html#listings">Listings</a></li>
-    <li class="nav-dropdown">
-      <a href="${root}index.html#areas" class="nav-dropdown-toggle">Communities <span class="nav-caret">▾</span></a>
-      <ul class="nav-dropdown-menu">
-        ${cityLinks}
-        <li class="nav-dropdown-divider"></li>
-        <li><a href="${root}index.html#areas">All Communities ↗</a></li>
-      </ul>
-    </li>
+    <li><a href="${root}region-guide.html">Region Guide</a></li>
     <li><a href="${root}index.html#about">About Hugh</a></li>
     <li><a href="${root}index.html#contact">Contact</a></li>
   </ul>
@@ -48,12 +29,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="${root}index.html#listings" onclick="closeMobileMenu()">Listings</a>
-  <div class="mobile-communities-toggle" onclick="toggleMobileCities()">
-    Communities <span id="mobile-caret">▾</span>
-  </div>
-  <div id="mobile-cities" style="display:none;">
-    ${cities.map(c => `<a href="${root}communities/${c.file}.html" onclick="closeMobileMenu()" class="mobile-city-link">${c.name}</a>`).join('')}
-  </div>
+  <a href="${root}region-guide.html" onclick="closeMobileMenu()">Region Guide</a>
   <a href="${root}index.html#about" onclick="closeMobileMenu()">About Hugh</a>
   <a href="${root}index.html#contact" onclick="closeMobileMenu()">Contact</a>
   <a href="tel:8016999600" class="mobile-phone">📞 (801) 699-9600</a>
@@ -93,23 +69,7 @@
   nav.scrolled .nav-center a { color: var(--mid); }
   .nav-center a:hover { color: var(--accent) !important; }
 
-  .nav-caret { font-size: 0.6rem; margin-left: 2px; }
 
-  .nav-dropdown-menu {
-    display: none; position: absolute; top: calc(100% + 1.5rem); left: -1.2rem;
-    background: var(--white); border: 1px solid var(--border); min-width: 200px;
-    list-style: none; box-shadow: 0 8px 32px rgba(0,0,0,0.08); z-index: 600;
-  }
-  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-  .nav-dropdown-menu li a {
-    display: block; padding: 0.75rem 1.2rem; font-size: 0.78rem;
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid) !important;
-    text-decoration: none; transition: background 0.15s, color 0.15s;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-dropdown-menu li:last-child a { border-bottom: none; }
-  .nav-dropdown-menu li a:hover { background: var(--cream); color: var(--black) !important; }
-  .nav-dropdown-divider { border-top: 1px solid var(--border); }
 
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
   .nav-phone { font-size: 1rem; font-weight: 500; color: rgba(253,252,250,0.7); text-decoration: none; transition: color 0.3s; letter-spacing: 0.02em; }
@@ -129,8 +89,6 @@
   .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
   .mobile-menu a { display: block; padding: 1.1rem 1.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s, background 0.2s; }
   .mobile-menu a:hover { color: var(--black); background: var(--cream); }
-  .mobile-communities-toggle { padding: 1.1rem 1.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); border-bottom: 1px solid var(--border); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .mobile-communities-toggle:hover { background: var(--cream); }
   .mobile-city-link { padding-left: 2.5rem !important; font-size: 0.72rem !important; background: var(--cream); }
   .mobile-menu .mobile-phone { display: flex; align-items: center; gap: 0.6rem; padding: 1.1rem 1.5rem; font-size: 0.95rem; font-weight: 500; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); }
   .mobile-menu .mobile-cta { display: block; margin: 1.2rem 1.5rem; background: var(--accent-light); color: var(--white) !important; text-align: center; padding: 0.85rem !important; font-size: 0.68rem !important; border-bottom: none !important; letter-spacing: 0.16em; }
@@ -152,7 +110,6 @@
     placeholder.outerHTML = navStyles + navHTML;
   }
 
-  // Init nav scroll + hamburger after DOM injection
   document.addEventListener('DOMContentLoaded', initNav);
   if (document.readyState !== 'loading') initNav();
 
@@ -188,12 +145,4 @@
     document.body.style.overflow = '';
   };
 
-  window.toggleMobileCities = function () {
-    const cities = document.getElementById('mobile-cities');
-    const caret = document.getElementById('mobile-caret');
-    if (!cities) return;
-    const open = cities.style.display === 'block';
-    cities.style.display = open ? 'none' : 'block';
-    if (caret) caret.textContent = open ? '▾' : '▴';
-  };
 })();
