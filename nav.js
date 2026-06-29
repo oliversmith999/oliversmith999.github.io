@@ -20,7 +20,7 @@
   </ul>
   <div class="nav-right">
     <a href="tel:8016999600" class="nav-phone">(801) 699-9600</a>
-    <a href="${root}index.html#contact" class="nav-btn">Start Your Search</a>
+    <a href="${root}index.html#contact" class="nav-btn">Connect With Hugh</a>
   </div>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -33,7 +33,7 @@
   <a href="${root}index.html#about" onclick="closeMobileMenu()">About Hugh</a>
   <a href="${root}index.html#contact" onclick="closeMobileMenu()">Contact</a>
   <a href="tel:8016999600" class="mobile-phone">📞 (801) 699-9600</a>
-  <a href="${root}index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Start Your Search</a>
+  <a href="${root}index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Connect With Hugh</a>
 </div>
 `;
 
@@ -41,21 +41,32 @@
 <style id="nav-shared-styles">
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
+    --nav-height: 72px;
     --black: #0a0a0a; --off-black: #111110; --dark: #1c1c1b; --mid: #4a4a48;
     --muted: #8a8a87; --border: #e2e0db; --dark-cream: #e8e0cb; --cream: #f5f3ee;
     --white: #fdfcfa; --accent: #efede9; --accent-light: #d4b07a; --accent-ligher: #dabf97;
   }
   html { scroll-behavior: smooth; font-size: 16px; }
-  body { font-family: 'Outfit', sans-serif; background: var(--white); color: var(--dark); -webkit-font-smoothing: antialiased; padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+    padding-top: var(--nav-height);
+  }
 
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    height: var(--nav-height);
     display: flex; align-items: center; justify-content: space-between;
-    padding: env(safe-area-inset-top, 0px) 3.5rem 0;
-    height: calc(72px + env(safe-area-inset-top, 0px));
+    padding: 0 3.5rem;
     transition: background 0.3s, border-color 0.3s;
   }
-  nav.scrolled { background: rgba(253,252,250,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+  nav.scrolled {
+    background: rgba(253,252,250,0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
 
   .nav-logo { display: flex; flex-direction: column; gap: 1px; text-decoration: none; }
   .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; }
@@ -68,8 +79,6 @@
   .nav-center a { font-size: 0.90rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; text-decoration: none; color: rgba(253,252,250,0.8); transition: color 0.2s; }
   nav.scrolled .nav-center a { color: var(--mid); }
   .nav-center a:hover { color: var(--accent) !important; }
-
-
 
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
   .nav-phone { font-size: 1rem; font-weight: 500; color: rgba(253,252,250,0.7); text-decoration: none; transition: color 0.3s; letter-spacing: 0.02em; }
@@ -85,7 +94,15 @@
   .nav-hamburger.open span:nth-child(2) { opacity: 0; }
   .nav-hamburger.open span:nth-child(3) { transform: translateY(-8.25px) rotate(-45deg); }
 
-  .mobile-menu { display: none; position: fixed; top: calc(72px + env(safe-area-inset-top, 0px)); left: 0; right: 0; background: rgba(253,252,250,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); z-index: 490; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform 0.3s ease, opacity 0.3s ease; }
+  .mobile-menu {
+    display: none; position: fixed;
+    top: var(--nav-height);
+    left: 0; right: 0;
+    background: rgba(253,252,250,0.97); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border); z-index: 490;
+    transform: translateY(-8px); opacity: 0; pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
   .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
   .mobile-menu a { display: block; padding: 1.1rem 1.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); transition: color 0.2s, background 0.2s; }
   .mobile-menu a:hover { color: var(--black); background: var(--cream); }
@@ -98,7 +115,7 @@
     .nav-center, .nav-phone, .nav-btn { display: none; }
     .nav-logo-main { font-size: 1.6rem; }
     .nav-logo-sub { font-size: 0.65rem; letter-spacing: 0.14em; }
-    nav { padding: env(safe-area-inset-top, 0px) 1.5rem 0; }
+    nav { padding: 0 1.5rem; }
     .nav-hamburger { display: flex; }
     .mobile-menu { display: block; }
   }

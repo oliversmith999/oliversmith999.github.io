@@ -41,7 +41,7 @@
         <li><a href="${root}index.html#contact">Send a Message</a></li>
         <li><a href="http://www.greaterparkcityrealestate.com/deer_valley_buyers.html">Buyer Resources</a></li>
         <li><a href="http://www.greaterparkcityrealestate.com/heber_sellers.html">Seller Resources</a></li>
-        <li><a href="http://www.greaterparkcityrealestate.com/heber_sellers.html">Lender Resources</a></li>
+        <li><a href="https://www.utahmortgageloan.com/pierre/">Lender Resources</a></li>
       </ul>
     </div>
   </div>
