@@ -16,7 +16,6 @@
     <li><a href="${root}index.html#listings">Listings</a></li>
     <li><a href="${root}region-guide.html">Region Guide</a></li>
     <li><a href="${root}index.html#about">About Hugh</a></li>
-    <li><a href="${root}index.html#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <a href="tel:8016999600" class="nav-phone">(801) 699-9600</a>
