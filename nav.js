@@ -68,8 +68,9 @@
     backdrop-filter: blur(12px);
   }
 
-  .nav-logo { display: flex; flex-direction: column; gap: 1px; text-decoration: none; }
-  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; }
+  .nav-logo { display: flex; flex-direction: column; gap: 1px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; white-space: nowrap; }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; white-space: nowrap; }
   nav.scrolled .nav-logo-main { color: var(--black); }
   .nav-logo-sub { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); font-weight: 500; }
   nav.scrolled .nav-logo-sub { color: var(--mid); }
