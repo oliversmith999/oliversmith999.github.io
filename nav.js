@@ -30,7 +30,6 @@
   <a href="${root}index.html#listings" onclick="closeMobileMenu()">Listings</a>
   <a href="${root}region-guide.html" onclick="closeMobileMenu()">Region Guide</a>
   <a href="${root}index.html#about" onclick="closeMobileMenu()">About Hugh</a>
-  <a href="${root}index.html#contact" onclick="closeMobileMenu()">Contact</a>
   <a href="tel:8016999600" class="mobile-phone">📞 (801) 699-9600</a>
   <a href="${root}index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Connect With Hugh</a>
 </div>
