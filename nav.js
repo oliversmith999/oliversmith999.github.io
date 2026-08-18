@@ -1,25 +1,23 @@
 // nav.js — shared navigation for all pages
-// Usage: <div id="nav-placeholder"></div><script src="../nav.js"></script>
-// For index.html: <div id="nav-placeholder"></div><script src="nav.js"></script>
+// Usage: <div id="nav-placeholder"></div><script src="/nav.js"></script>
+// Uses root-relative paths (/index.html, /region-guide.html), so this works
+// the same regardless of which page includes it — no folder-depth logic needed.
 
 (function () {
-  const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
-  const root = isIndex ? '' : '../';
-
   const navHTML = `
 <nav id="navbar">
-  <a href="${root}index.html" class="nav-logo">
+  <a href="/index.html" class="nav-logo">
     <span class="nav-logo-main">Smith Real Estate Group</span>
     <span class="nav-logo-sub">Welcome2Utah.com</span>
   </a>
   <ul class="nav-center">
-    <li><a href="${root}index.html#listings">Listings</a></li>
-    <li><a href="${root}region-guide.html">Region Guide</a></li>
-    <li><a href="${root}index.html#about">About Hugh</a></li>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/region-guide.html">Region Guide</a></li>
+    <li><a href="/index.html#about">About Hugh</a></li>
   </ul>
   <div class="nav-right">
     <a href="tel:8016999600" class="nav-phone">(801) 699-9600</a>
-    <a href="${root}index.html#contact" class="nav-btn">Connect With Hugh</a>
+    <a href="/index.html#contact" class="nav-btn">Connect With Hugh</a>
   </div>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -27,11 +25,11 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="${root}index.html#listings" onclick="closeMobileMenu()">Listings</a>
-  <a href="${root}region-guide.html" onclick="closeMobileMenu()">Region Guide</a>
-  <a href="${root}index.html#about" onclick="closeMobileMenu()">About Hugh</a>
+  <a href="/index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="/region-guide.html" onclick="closeMobileMenu()">Region Guide</a>
+  <a href="/index.html#about" onclick="closeMobileMenu()">About Hugh</a>
   <a href="tel:8016999600" class="mobile-phone">📞 (801) 699-9600</a>
-  <a href="${root}index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Connect With Hugh</a>
+  <a href="/index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Connect With Hugh</a>
 </div>
 `;
 
@@ -67,8 +65,7 @@
   }
 
   .nav-logo { display: flex; flex-direction: column; gap: 1px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; white-space: nowrap; }
-  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.75rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; white-space: nowrap; }
+  .nav-logo-main { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 600; color: var(--white); letter-spacing: 0.04em; line-height: 1; transition: color 0.3s; white-space: nowrap; }
   nav.scrolled .nav-logo-main { color: var(--black); }
   .nav-logo-sub { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); font-weight: 500; }
   nav.scrolled .nav-logo-sub { color: var(--mid); }
@@ -135,9 +132,20 @@
     const mobileMenu = document.getElementById('mobileMenu');
     if (!navbar) return;
 
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    });
+    // Only index.html has a full-bleed hero image behind the nav, which is
+    // what the transparent/white-text nav state is designed for. Every other
+    // page goes straight into a light-background section, so force the dark
+    // "scrolled" styling immediately or the white nav text is invisible.
+    const path = window.location.pathname;
+    const isIndex = path.endsWith('index.html') || path === '/' || path.endsWith('/');
+
+    if (isIndex) {
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+      });
+    } else {
+      navbar.classList.add('scrolled');
+    }
 
     if (hamburger && mobileMenu) {
       hamburger.addEventListener('click', () => {

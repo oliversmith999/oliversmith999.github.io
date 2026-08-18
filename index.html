@@ -1181,7 +1181,6 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Wasatch Back · Salt Lake Valley · Utah County · Davis County</p>
     <h1 class="hero-title">Where the Mountains<br/><em>Welcome You Home</em></h1>
     <div class="hero-bottom">
       <p class="hero-desc">Hugh Smith has guided buyers and sellers through Utah's communities for over 30 years. Exceptional service. Unmatched local expertise.</p>
@@ -1192,53 +1191,6 @@
     </div>
   </div>
   <div class="hero-dots" id="heroDots"></div>
-</section>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat">
-    <span class="stat-num">30+</span>
-    <span class="stat-label">Years of Experience</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">5.0</span>
-    <span class="stat-label">Star Rating</span>
-  </div>
-  <div class="stat">
-    <span class="stat-num">100%</span>
-    <span class="stat-label">Referral Driven</span>
-  </div>
-</div>
-
-<!-- FEATURED LISTINGS -->
-<section class="listings-section" id="listings">
-  <div class="section-head">
-    <div>
-      <span class="eyebrow">Properties</span>
-      <h2 class="section-title">Featured Listings</h2>
-    </div>
-  </div>
-
-  <div style="margin-bottom: 2.5rem;">
-    <div style="display:inline-flex; border:1px solid var(--border); background:var(--cream);">
-      <button
-        id="tab-listed"
-        onclick="switchListings('listed')"
-        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:var(--black); color:var(--white); cursor:pointer;"
-      >Currently Listed</button>
-      <button
-        id="tab-sold"
-        onclick="switchListings('sold')"
-        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:transparent; color:var(--muted); cursor:pointer; transition:background 0.2s, color 0.2s;"
-      >Recently Sold</button>
-    </div>
-  </div>
-
-  <div id="listings-loading" style="padding: 3rem 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">
-    Loading listings...
-  </div>
-
-  <div id="listings-grid" class="listings-grid" style="display:none;"></div>
 </section>
 
 <!-- AREAS -->
@@ -1320,7 +1272,6 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials-section" id="testimonials">
-  <span class="eyebrow" style="color: var(--accent);">Testimonials</span>
   <h2 class="section-title">Client Experiences</h2>
 
   <div class="reviews-marquee">
@@ -1363,6 +1314,43 @@
     </div>
   </div>
 </section>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings-section" id="listings">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">Properties</span>
+      <h2 class="section-title">Featured Listings</h2>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 2.5rem;">
+    <div style="display:inline-flex; border:1px solid var(--border); background:var(--cream);">
+      <button
+        id="tab-listed"
+        onclick="switchListings('listed')"
+        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:var(--black); color:var(--white); cursor:pointer;"
+      >Currently Listed</button>
+      <button
+        id="tab-sold"
+        onclick="switchListings('sold')"
+        style="padding:0.6rem 1.8rem; font-family:'Outfit',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:none; background:transparent; color:var(--muted); cursor:pointer; transition:background 0.2s, color 0.2s;"
+      >Recently Sold</button>
+    </div>
+  </div>
+
+  <div id="listings-loading" style="padding: 3rem 0; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">
+    Loading listings...
+  </div>
+
+  <div id="listings-grid" class="listings-grid" style="display:none;"></div>
+</section>
+
+
+
+
+
+
 
 <!-- PROCESS -->
 <section class="process-section">
