@@ -13,7 +13,7 @@
   <ul class="nav-center">
     <li><a href="/index.html">Home</a></li>
     <li><a href="/region-guide.html">Region Guide</a></li>
-    <li><a href="/index.html#about">About Hugh</a></li>
+    <li><a href="/abouthugh.html">About Hugh</a></li>
   </ul>
   <div class="nav-right">
     <a href="tel:8016999600" class="nav-phone">(801) 699-9600</a>
@@ -27,7 +27,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="/index.html" onclick="closeMobileMenu()">Home</a>
   <a href="/region-guide.html" onclick="closeMobileMenu()">Region Guide</a>
-  <a href="/index.html#about" onclick="closeMobileMenu()">About Hugh</a>
+  <a href="/abouthugh.html" onclick="closeMobileMenu()">About Hugh</a>
   <a href="tel:8016999600" class="mobile-phone">📞 (801) 699-9600</a>
   <a href="/index.html#contact" class="mobile-cta" onclick="closeMobileMenu()">Connect With Hugh</a>
 </div>
