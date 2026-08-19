@@ -205,6 +205,21 @@
     }
     .bio-contact a:hover { color: var(--accent-light); }
 
+    /* ── HIS STORY ── */
+    .story-section {
+      background: var(--cream);
+      padding: 5rem 3.5rem;
+    }
+    .story-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .story-section .eyebrow { display: flex; justify-content: center; }
+    .story-section .section-title { margin: 0.6rem auto 2rem; }
+    .story-body { text-align: left; }
+    .story-body .bio-text:last-child { margin-bottom: 0; }
+
     /* ── TESTIMONIALS ── */
     .testimonials-section {
       background: var(--cream);
@@ -356,7 +371,7 @@
       .nav-logo-sub { font-size: 0.65rem; letter-spacing: 0.14em; }
       nav { padding: 0 1.5rem; }
       .page-header { padding: calc(var(--nav-height) + 2.5rem) 1.5rem 2.5rem; }
-      .bio-section, .testimonials-section, .cta-section { padding: 3.5rem 1.5rem; }
+      .bio-section, .story-section, .testimonials-section, .cta-section { padding: 3.5rem 1.5rem; }
     }
   </style>
 </head>
@@ -385,6 +400,26 @@
     <div class="bio-contact">
       <a href="tel:8016999600">(801) 699-9600</a>
       <a href="/index.html#contact">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- HIS STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <span class="eyebrow">Beyond the Business</span>
+    <h2 class="section-title">Get to Know Hugh</h2>
+    <div class="story-body">
+      <!--
+        Oliver: replace these paragraphs with real details about Hugh's life —
+        e.g. where he grew up, how he got into real estate, his family,
+        hobbies, community involvement, faith, or anything that helps
+        clients feel like they know him as a person and not just an agent.
+        Add or remove <p class="bio-text"> blocks as needed.
+      -->
+      <p class="bio-text">Hugh grew up in SLC, and his connection to Utah runs deeper than three decades of real estate — it's home. [A sentence or two about his roots and what drew him to the industry.]</p>
+      <p class="bio-text">Outside the office, Hugh is [a few sentences about family, hobbies, or interests — e.g. spending time with his kids and grandkids, hiking the Wasatch trails, or whatever fits].</p>
+      <p class="bio-text">[Optional third paragraph — community involvement, faith, volunteer work, or a personal philosophy that shapes how he works with clients.]</p>
     </div>
   </div>
 </section>
